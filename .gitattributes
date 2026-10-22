@@ -1,0 +1,20 @@
+* text=auto
+
+*.md text eol=lf
+*.dart text eol=lf
+*.py text eol=lf
+*.rml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.lock text eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.riv binary
+*.wav binary
+*.mp3 binary
+*.zip binary

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "source": "4 Computer - \ucef4\ud4e8\ud130.mp3",
+  "sourceSha256": "808b1481afc105e1b3f651cd79b45e592fa0d82a6045ef014b0e496839785373",
+  "audioSha256": "ad1638c10824e5ccaac4a08b43f34ebaf45818cb5c5f21a343f1595b60ec61b8",
+  "duration": 90.27920833333333,
+  "fps": 60,
+  "mouths": [
+    "rest",
+    "small",
+    "medium",
+    "wide",
+    "round",
+    "teeth",
+    "closed_press",
+    "smile"
+  ],
+  "disabledMouthIndices": [
+    0,
+    3
+  ],
+  "method": {
+    "windowMs": 20,
+    "attackMs": 30,
+    "releaseMs": 70,
+    "silenceThresholdRms": 0.004918873538624818,
+    "silenceFrames": 2,
+    "minPoseFrames": 4,
+    "crossfadeMs": 45,
+    "note": "Rest and Wide are disabled. Silence uses Closed press. Medium and high energy use Medium. Energy animation, not phoneme or viseme alignment. Extra art states are manually selectable."
+  },
+  "silenceMouthIndex": 6,
+  "frames": 5418,
+  "silenceFrames": 1548,
+  "usedMouths": [
+    1,
+    2,
+    6
+  ],
+  "silenceViolations": 0
+}

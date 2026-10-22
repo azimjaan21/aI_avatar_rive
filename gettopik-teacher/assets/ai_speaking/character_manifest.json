@@ -1,0 +1,96 @@
+{
+  "character": "teacher",
+  "version": "1.0",
+  "canvas": {
+    "width": 1086,
+    "height": 1448
+  },
+  "background": {
+    "file": "backgrounds/classroom_bg.png",
+    "width": 1080,
+    "height": 1920
+  },
+  "eye_centers": [
+    [
+      449,
+      473
+    ],
+    [
+      628,
+      468
+    ]
+  ],
+  "mouth_anchor": {
+    "x": 546,
+    "y": 645,
+    "notes": "Approximate upper-lip baseline; all overlays pre-registered to 1086x1448 canvas"
+  },
+  "render_order": [
+    "backgrounds/classroom_bg.png",
+    "characters/teacher/body.png",
+    "characters/teacher/head.png",
+    "characters/teacher/mouth/mouth_foundation.png",
+    "characters/teacher/eyes/<state>.png",
+    "characters/teacher/mouth/<state>.png"
+  ],
+  "faces": {
+    "eyes": [
+      "open",
+      "half"
+    ],
+    "mouth": [
+      "small",
+      "medium",
+      "round",
+      "teeth",
+      "closed_press",
+      "smile"
+    ]
+  },
+  "animation_notes": {
+    "blink": "Open -> Half -> Open (~150 ms); Closed temporarily disabled",
+    "mouth": "Use output PCM audio amplitude with smoothing, shape inference is NOT phoneme detection",
+    "head": "Small pivoted 2D rotation only (about ±1°); eyes and mouth follow head transform",
+    "breathing": "Tiny body scale/translate (under 1%); avoid fake depth"
+  },
+  "limitations": [
+    "Graphic sample assets suitable for an MVP, not production-grade photoreal visemes or automated retopology",
+    "Base is inpainted in eye/mouth regions; render one eye and one mouth overlay above it",
+    "A truly flexible 3D/2.5D head turn requires additional facial artwork/mesh rigging"
+  ],
+  "mouth_assets": {
+    "version": "2-normalized",
+    "center": {
+      "x": 546,
+      "y": 675
+    },
+    "canvas": {
+      "width": 1086,
+      "height": 1448
+    },
+    "foundation": "characters/teacher/mouth/mouth_foundation.png",
+    "notes": "Render foundation above head and below all mouth states. Corrected PNGs retain full-canvas coordinates; do not render unprocessed v2 ZIP PNGs directly.",
+    "disabled": [
+      "rest",
+      "wide"
+    ],
+    "highEnergyPose": "medium",
+    "defaultPose": "closed_press",
+    "silencePose": "closed_press"
+  },
+  "eye_assets": {
+    "active": [
+      "open",
+      "half"
+    ],
+    "temporarilyDisabled": [
+      "closed"
+    ],
+    "disabledSourceRetained": true,
+    "autoSequence": [
+      "open",
+      "half",
+      "open"
+    ]
+  }
+}

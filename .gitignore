@@ -1,0 +1,55 @@
+# Local release packages, extracted input archives and working backups
+/dist/
+/staging/
+/backups/
+
+# Generated builds and caches; bundled player/assets remain versioned
+**/build/
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/coverage/
+**/windows/flutter/ephemeral/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Generated captures; retain the current, curated validation evidence
+/gettopik-teacher/validation/*
+!/gettopik-teacher/validation/closed-press-default/
+/gettopik-teacher/validation/closed-press-default/*
+!/gettopik-teacher/validation/closed-press-default/README.md
+!/gettopik-teacher/validation/closed-press-default/rig-report.json
+!/gettopik-teacher/validation/closed-press-default/playback-report.json
+!/gettopik-teacher/validation/closed-press-default/audio-output-report.json
+
+# Local settings, credentials and editor files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.idea/
+.vscode/
+*.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# pubspec.lock, source PNGs, WAV, timeline JSON, player/assets/teacher.riv
+# and docs/images are intentionally included for a runnable checkout.

@@ -1,0 +1,13 @@
+{
+  "restEmbedded": false,
+  "wideEmbedded": false,
+  "closedEyesEmbedded": false,
+  "autoIndices": [
+    6,
+    1,
+    2
+  ],
+  "silenceViolations": 0,
+  "defaultMatchesExplicitClosedPress": true,
+  "audioSha256": "ad1638c10824e5ccaac4a08b43f34ebaf45818cb5c5f21a343f1595b60ec61b8"
+}

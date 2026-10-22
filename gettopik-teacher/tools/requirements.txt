@@ -1,0 +1,4 @@
+imageio-ffmpeg==0.6.0
+Pillow==11.0.0
+numpy==2.2.1
+SoundCard==0.4.6
