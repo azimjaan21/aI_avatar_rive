@@ -2,6 +2,8 @@
 
 The current native Windows demo was tested after replacing Rest with Closed press. The screenshots below are actual application captures from that run.
 
+The subsequent subtle-motion update preserves the eye, mouth and baked audio timelines. See the [motion validation](MOTION.md#validation) for the seam fallback, measured breathing offsets and its playback regression evidence.
+
 ![Native Teacher demo ready to play, with Rest and Wide absent from the pose controls](images/studio-ready.png)
 
 ## Verified behavior

@@ -1,0 +1,47 @@
+{
+  "mode": "whole-avatar neck-pivot seam fallback",
+  "requestedSeparateHeadRangeDegrees": {
+    "idle": 0.8,
+    "talking": 1.2
+  },
+  "reason": "Independent head motion exposes a doubled shoulder edge in the supplied head/body overlap.",
+  "pivot": [
+    544,
+    870
+  ],
+  "rotation": {
+    "Idle": {
+      "minimumDegrees": -0.34999997811414935,
+      "maximumDegrees": 0.34999997811414935,
+      "seconds": 47.0
+    },
+    "TalkingMotion": {
+      "minimumDegrees": -0.49999998510472177,
+      "maximumDegrees": 0.49999998510472177,
+      "seconds": 67.0
+    }
+  },
+  "breathingScale": [
+    1.002,
+    1.004
+  ],
+  "breathingPeriodSeconds": 31,
+  "breathingDisplayAmplitudeLogicalPx": 2,
+  "renderedBreathingTranslations": {
+    "0.5": {
+      "yDifferenceFromAmplitude025": -1.9811890125274658,
+      "expectedYDifference": -2,
+      "correlation": 0.9999945097845133
+    },
+    "1": {
+      "yDifferenceFromAmplitude025": -5.97439432144165,
+      "expectedYDifference": -6,
+      "correlation": 0.9999956829915959
+    }
+  },
+  "classroomStationary": true,
+  "allSourcePngHashesUnchanged": true,
+  "eyeMouthAndAudioTimelinesUnchanged": true,
+  "transitionMs": 700,
+  "shortSilenceHoldMs": 700
+}

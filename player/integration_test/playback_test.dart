@@ -28,6 +28,16 @@ void main() {
       expect(c.ready, isTrue);
       expect(c.mouth, 6);
       expect(c.mouthProperty!.value, 6);
+      expect(c.motionProperty!.value, 0);
+      // Native viewport size controls breathing amplitude rather than artwork size.
+      await tester.pump(const Duration(milliseconds: 100));
+      final avatarSize = tester.getSize(
+        find.byKey(const Key('teacher-avatar')),
+      );
+      final displayScale = avatarSize.width / 1086 < avatarSize.height / 1448
+          ? avatarSize.width / 1086
+          : avatarSize.height / 1448;
+      expect(c.breathProperty!.value * 8 * displayScale, closeTo(2, .01));
       expect(find.byKey(const Key('mouth-0')), findsNothing);
       expect(find.byKey(const Key('mouth-3')), findsNothing);
       expect(find.byKey(const Key('eye-2')), findsNothing);
@@ -104,11 +114,13 @@ void main() {
           'mouth': c.mouth,
           'silence': c.silence,
           'riveValue': c.mouthProperty!.value,
+          'motionTalking': c.motionProperty!.value,
         });
         if (c.silence) {
           expect(c.mouth, 6);
           silent++;
         } else {
+          expect(c.motionProperty!.value, 1);
           observed.add(c.mouth);
           speech++;
         }
@@ -136,6 +148,7 @@ void main() {
       await tester.tap(find.byKey(const Key('play-pause')));
       await tester.pump(const Duration(milliseconds: 250));
       expect(c.playing, isFalse);
+      expect(c.motionProperty!.value, 0);
       expect(c.mouth, 6);
       final paused = c.position;
       await advanceFor(700);
@@ -161,6 +174,7 @@ void main() {
         await tester.pump(const Duration(milliseconds: 120));
         expect(c.mouth, i);
         expect(c.mouthProperty!.value, i.toDouble());
+        expect(c.motionProperty!.value, 0);
       }
       await c.selectMouth(3);
       await advanceFor(100);
@@ -192,6 +206,8 @@ void main() {
         'silencePose': 'closed_press',
         'wideAssetDisabled': true,
         'completionAndReplay': true,
+        'audioDrivenMotion': true,
+        'breathingDisplayAmplitude': 2,
       });
       File(
         '../gettopik-teacher/validation/playback-report.json',

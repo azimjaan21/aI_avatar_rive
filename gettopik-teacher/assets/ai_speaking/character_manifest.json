@@ -50,8 +50,8 @@
   "animation_notes": {
     "blink": "Open -> Half -> Open (~150 ms); Closed temporarily disabled",
     "mouth": "Use output PCM audio amplitude with smoothing, shape inference is NOT phoneme detection",
-    "head": "Small pivoted 2D rotation only (about ±1°); eyes and mouth follow head transform",
-    "breathing": "Tiny body scale/translate (under 1%); avoid fake depth"
+    "head": "Whole-avatar neck-pivot seam fallback: idle +/-0.35 degrees, talking +/-0.5 degrees; smooth 700 ms transitions",
+    "breathing": "Uniform 1.002-1.004 scale around the neck; vertical translation up to +/-2 logical pixels in the Flutter viewport"
   },
   "limitations": [
     "Graphic sample assets suitable for an MVP, not production-grade photoreal visemes or automated retopology",

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +22,10 @@ class AvatarController extends ChangeNotifier {
   rive.ViewModelInstance? instance;
   rive.ViewModelInstanceNumber? mouthProperty;
   rive.ViewModelInstanceNumber? eyeProperty;
+  rive.ViewModelInstanceNumber? motionProperty;
+  rive.ViewModelInstanceNumber? breathProperty;
+  double _breathAmplitude = .5;
+  double? _lastSpeechPosition;
   int eyePose = -1; // -1 Auto, 0 Open, 1 Half. Closed is temporarily disabled.
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   List<dynamic> frames = [];
@@ -55,6 +60,12 @@ class AvatarController extends ChangeNotifier {
       if (mouthProperty == null) throw StateError('Missing $propertyName');
       eyeProperty = instance!.number('eyePose');
       if (eyeProperty == null) throw StateError('Missing eyePose');
+      motionProperty = instance!.number('motionTalking');
+      breathProperty = instance!.number('breathAmplitude');
+      if (motionProperty == null || breathProperty == null) {
+        throw StateError('Missing motionTalking or breathAmplitude');
+      }
+      breathProperty!.value = _breathAmplitude;
       _subscriptions.add(
         audio.onPositionChanged.listen((p) {
           if (!seeking) {
@@ -101,6 +112,24 @@ class AvatarController extends ChangeNotifier {
     final f = frames[lo];
     energy = playing ? (f['energy'] as num).toDouble() : 0;
     silence = !playing || f['silence'] == true;
+    // Keep the larger motion through short word gaps, without a separate clock.
+    if (!playing || manualMouth != null) {
+      _lastSpeechPosition = null;
+    } else if (!silence) {
+      _lastSpeechPosition = position;
+    }
+    final lastSpeech = _lastSpeechPosition;
+    final talking =
+        playing &&
+        manualMouth == null &&
+        lastSpeech != null &&
+        position >= lastSpeech &&
+        position - lastSpeech < .7;
+    final motion = talking ? 1.0 : 0.0;
+    if (motionProperty?.value != motion) {
+      motionProperty?.value = motion;
+      riveController?.scheduleRepaint();
+    }
     final requested = manualMouth ?? (silence ? 6 : f['mouth'] as int);
     // Rest (0) uses Closed press; Wide (3) uses Medium.
     final next = requested == 0 ? 6 : (requested == 3 ? 2 : requested);
@@ -130,6 +159,7 @@ class AvatarController extends ChangeNotifier {
 
   Future<void> seek(double seconds) async {
     seeking = true;
+    _lastSpeechPosition = null;
     try {
       await audio.seek(Duration(microseconds: (seconds * 1000000).round()));
       position = seconds;
@@ -137,6 +167,18 @@ class AvatarController extends ChangeNotifier {
     } finally {
       seeking = false;
     }
+  }
+
+  /// Convert the Rive ±8-unit breathing range to at most ±2 logical pixels.
+  /// Paired inverse transforms change translation without stretching artwork.
+  void configureViewport(double width, double height) {
+    final scale = math.min(width / 1086, height / 1448);
+    if (!scale.isFinite || scale <= 0) return;
+    final amplitude = (.25 / scale).clamp(.001, 1.0);
+    if ((_breathAmplitude - amplitude).abs() < .00001) return;
+    _breathAmplitude = amplitude;
+    breathProperty?.value = amplitude;
+    riveController?.scheduleRepaint();
   }
 
   Future<void> selectMouth(int? index) async {
@@ -166,6 +208,8 @@ class AvatarController extends ChangeNotifier {
     unawaited(audio.dispose());
     mouthProperty?.dispose();
     eyeProperty?.dispose();
+    motionProperty?.dispose();
+    breathProperty?.dispose();
     riveController?.dispose();
     instance?.dispose();
     file?.dispose();

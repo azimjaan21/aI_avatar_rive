@@ -90,6 +90,8 @@ The current recording is 90.279208 seconds. If you replace it, update the integr
 6. Sample the timeline using native audio position and update the Rive `mouthIndex` property.
 7. Crossfade mouth states over 45 ms while eye and idle layers run independently.
 
+Head motion uses a separate `motionTalking` property with a 700 ms quiet hold and eased state transitions. Breathing runs independently on a 31-second timeline. See the [motion guide](MOTION.md) for viewport compensation and the current shoulder-seam fallback.
+
 `AudioMouth` is also baked into the RML as a one-shot timeline. Flutter uses the mouth state machine instead of running that timeline concurrently.
 
 ## Checks

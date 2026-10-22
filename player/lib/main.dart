@@ -110,11 +110,19 @@ class _TeacherPageState extends State<TeacherPage> {
                             else
                               const ColoredBox(color: Color(0xFF53615A)),
                             if (avatar.riveController != null)
-                              rive.RiveWidget(
-                                key: const Key('teacher-avatar'),
-                                controller: avatar.riveController!,
-                                fit: rive.Fit.contain,
-                                alignment: Alignment.bottomCenter,
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  avatar.configureViewport(
+                                    constraints.maxWidth,
+                                    constraints.maxHeight,
+                                  );
+                                  return rive.RiveWidget(
+                                    key: const Key('teacher-avatar'),
+                                    controller: avatar.riveController!,
+                                    fit: rive.Fit.contain,
+                                    alignment: Alignment.bottomCenter,
+                                  );
+                                },
                               ),
                             Positioned(
                               top: 18,

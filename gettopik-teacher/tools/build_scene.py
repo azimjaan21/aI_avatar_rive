@@ -3,6 +3,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import math
 from eye_pose_rig import configure_eyes
+from head_motion_rig import configure_motion
 
 ROOT = Path(__file__).resolve().parents[1]
 MOUTHS = ['rest', 'small', 'medium', 'wide', 'round', 'teeth', 'closed_press', 'smile']
@@ -91,6 +92,7 @@ def build():
     for i, name in enumerate(['open','half']): ET.SubElement(r, 'ImageAsset', file=f'{base}eyes/eyes_{name}.png', name=f'eyes_{name}', id=f'0:{110+i}')
     for i, name in enumerate(['head','body']): ET.SubElement(r, 'ImageAsset', file=f'{base}{name}.png', name=name, id=f'0:{120+i}')
     configure_eyes(r)
+    configure_motion(r)
     ET.indent(r)
     ET.ElementTree(r).write(ROOT/'scene.rml', encoding='unicode')
 

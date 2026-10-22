@@ -26,6 +26,11 @@ venv/
 !/gettopik-teacher/validation/closed-press-default/rig-report.json
 !/gettopik-teacher/validation/closed-press-default/playback-report.json
 !/gettopik-teacher/validation/closed-press-default/audio-output-report.json
+!/gettopik-teacher/validation/subtle-motion/
+/gettopik-teacher/validation/subtle-motion/*
+!/gettopik-teacher/validation/subtle-motion/motion-report.json
+!/gettopik-teacher/validation/subtle-motion/playback-report.json
+!/gettopik-teacher/validation/subtle-motion/audio-output-report.json
 
 # Local settings, credentials and editor files
 .env

@@ -13,7 +13,7 @@ The demo runs locally without a backend, API key or paid avatar service. Rive ar
 - **Local Korean audio:** Play/Pause, seeking, restart and replay after completion.
 - **Audio-driven mouth movement:** RMS analysis, smoothing, silence detection and 45 ms pose transitions.
 - **Six mouth poses:** Small, Medium, Round, Teeth, Closed press and Smile, with manual preview buttons.
-- **Subtle idle animation:** approximately ±1° head movement, gentle breathing and Open → Half → Open partial blinking.
+- **Subtle motion:** neck-pivot sway, ±2 px breathing, 1.002–1.004 breathing scale and Open → Half → Open partial blinking. The current artwork uses a smaller shared sway to keep the shoulders aligned.
 - **Independent eye inspection:** Auto, Open and Half controls work alongside audio and mouth animation.
 - **Transparent Teacher:** layered PNG artwork over a classroom or plain background.
 - **Reusable controller:** configurable Rive asset, artboard, audio, timeline and mouth property.
@@ -45,6 +45,8 @@ flutter run -d windows
 Alternatively, double-click `Start-Demo.cmd`. It opens a local portable build when one is present in `dist/GETTOPIK-Teacher-Windows/`; otherwise it runs Flutter from source.
 
 The first source build downloads dependencies. The built Windows application plays the bundled lesson offline.
+
+For a Chrome web preview, run `flutter run -d chrome --web-hostname=127.0.0.1 --web-port=7357` from `player/`, then open [the local demo](http://127.0.0.1:7357). It uses the same bundled final Rive asset. Press **Play lesson** to begin browser audio; the native integration test is Windows-specific.
 
 ### Use the player
 
@@ -89,6 +91,8 @@ For a Windows plugin symlink error, see [Windows setup](docs/DEVELOPMENT.md#wind
 [Asset guide](docs/ASSETS.md): layer order, fixed canvas coordinates, mouth indices and current exclusions.
 
 [Validation record](docs/VALIDATION.md): playback evidence and visual limitations.
+
+[Motion guide](docs/MOTION.md): idle/talking ranges, breathing compensation and the shoulder-seam fallback.
 
 ## Scope and limitations
 

@@ -71,6 +71,10 @@ Rive view model: `AvatarController`. Number property: `mouthIndex`. State machin
 
 Eye selection is independent of mouth control and audio playback. Closed is absent from the compiled Rive asset and UI.
 
+## Motion contract
+
+`motionTalking` is 0 for idle and 1 for speech. `breathAmplitude` is a positive vertical translation gain, set by the player from its actual contained artboard size. Both are number properties on `AvatarController`. The current whole-avatar neck-pivot fallback preserves head/body overlap; details and measured ranges are in the [motion guide](MOTION.md).
+
 ## Updating artwork
 
 1. Back up the source image locally.
