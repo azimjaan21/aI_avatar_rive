@@ -1,0 +1,74 @@
+{
+  "result": "passed",
+  "audio": "Korean female solo narration, FLEURS ko_kr/test row 4",
+  "audioDurationSeconds": 12.12,
+  "offlineSpeakingWithSmile": true,
+  "localStreamingSpeakerOutput": true,
+  "streamMetrics": {
+    "firstChunkToPlaybackCursorMs": 144.624,
+    "maxQueuedMs": 186.66699999999992,
+    "maxAllowedQueuedMs": 480.0,
+    "analysisFramesRetained": 19,
+    "visemeEventsRetained": 0,
+    "maxAnalysisFrameLagMs": 9.333999999999953,
+    "receivedSeconds": 6.92,
+    "consumedSeconds": 6.741333,
+    "underruns": 0,
+    "clockPollMs": 20,
+    "clock": "SoLoud released-stream consumed sample cursor",
+    "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+  },
+  "speechPoses": [
+    1,
+    2
+  ],
+  "silenceSamples": 26,
+  "expressions": [
+    "neutral",
+    "smile",
+    "happy",
+    "encouraging",
+    "softLaugh"
+  ],
+  "conversationStates": [
+    "idle",
+    "listening",
+    "thinking",
+    "speaking",
+    "smiling",
+    "laughing"
+  ],
+  "pauseResumeSeekInterruptEofAndStaleChunk": true,
+  "diagnostics": {
+    "mode": "externalStream",
+    "playbackEngine": "SoLoud PCM16 consumed sample cursor for all sources",
+    "lipSyncStyle": "lightweight",
+    "alignment": "RMS fallback — no phone alignment loaded",
+    "conversation": "idle",
+    "emotion": "neutral",
+    "uiNotifications": 329,
+    "visualSamples": 1892,
+    "stream": {
+      "firstChunkToPlaybackCursorMs": 20.636,
+      "maxQueuedMs": 100.0,
+      "maxAllowedQueuedMs": 480.0,
+      "analysisFramesRetained": 3,
+      "visemeEventsRetained": 0,
+      "maxAnalysisFrameLagMs": 0.0,
+      "receivedSeconds": 0.1,
+      "consumedSeconds": 0.1,
+      "underruns": 0,
+      "clockPollMs": 20,
+      "clock": "SoLoud released-stream consumed sample cursor",
+      "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+    }
+  },
+  "frameTimings": {
+    "mode": "Windows integration debug build; not a mobile or release benchmark",
+    "samples": 725,
+    "buildP50Ms": 0.814,
+    "buildP95Ms": 21.137,
+    "rasterP50Ms": 1.371,
+    "rasterP95Ms": 2.156
+  }
+}

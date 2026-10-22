@@ -30,7 +30,11 @@ class PcmStreamPlayer {
   bool get hasVoice => _handle != null;
   bool get audible => active && !paused && !buffering && hasVoice;
 
-  Future<void> start({int rate = 24000, double referenceRms = 0}) async {
+  Future<void> start({
+    int rate = 24000,
+    double referenceRms = 0,
+    bool spectralFeatures = true,
+  }) async {
     await stop();
     final generation = ++_generation;
     if (!_engine.isInitialized) {
@@ -40,7 +44,11 @@ class PcmStreamPlayer {
     }
     if (generation != _generation) return;
     sampleRate = rate;
-    _analyzer = PcmAnalyzer(sampleRate: rate, referenceRms: referenceRms);
+    _analyzer = PcmAnalyzer(
+      sampleRate: rate,
+      referenceRms: referenceRms,
+      spectralFeatures: spectralFeatures,
+    );
     _samples = 0;
     consumed = 0;
     _lowByte = -1;

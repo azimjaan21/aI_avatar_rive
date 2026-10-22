@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
-import 'package:audioplayers/audioplayers.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +12,7 @@ import 'avatar/character_profile.dart';
 import 'avatar/lip_sync.dart';
 export 'avatar/behavior.dart';
 export 'avatar/character_profile.dart';
-export 'avatar/lip_sync.dart' show VisemeEvent;
+export 'avatar/lip_sync.dart' show VisemeEvent, LipSyncStyle;
 
 enum AvatarAudioMode { offline, localStream, externalStream }
 
@@ -36,7 +35,6 @@ class AvatarController extends ChangeNotifier {
   final CharacterProfile profile;
   final String rivAsset, audioAsset, timelineAsset, artboardName, propertyName;
   final String? visemeAsset;
-  final audio = AudioPlayer(); // Existing offline playback remains available.
   final stream = PcmStreamPlayer();
   late final behavior = BehaviorController(
     emotions: EmotionController(
@@ -55,7 +53,6 @@ class AvatarController extends ChangeNotifier {
       breathProperty;
   rive.ViewModelInstanceNumber? emotionTiltProperty, emotionBobProperty;
   late int eyePose = profile.autoEye;
-  final _subscriptions = <StreamSubscription<dynamic>>[];
   final _clock = Stopwatch()..start();
   final _arrivalClock = Stopwatch();
   int _arrivalDueMs = 0;
@@ -70,10 +67,9 @@ class AvatarController extends ChangeNotifier {
   List<dynamic> frames = [];
   List<String> mouths = [];
   String source = '',
-      alignmentStatus = 'RMS fallback — no phone alignment loaded';
+      alignmentStatus = 'Audio-reactive fallback — no verified timings';
   double duration = 0, position = 0, energy = 0;
   double _lessonDuration = 0;
-  double _referenceRms = 0;
   late int mouth = profile.neutral;
   bool playing = false, ready = false, seeking = false, silence = true;
   bool _disposed = false, _forceNeutral = true;
@@ -84,9 +80,8 @@ class AvatarController extends ChangeNotifier {
   AvatarEmotion get emotion => behavior.emotions.emotion;
   double get _now => _clock.elapsedMicroseconds / 1e6;
   bool get isStreaming => mode != AvatarAudioMode.offline;
-  bool get buffering => isStreaming && stream.active && stream.buffering;
-  bool get transportActive =>
-      isStreaming ? stream.active && !stream.paused : playing;
+  bool get buffering => stream.active && stream.buffering;
+  bool get transportActive => stream.active && !stream.paused;
 
   Future<void> load() async {
     try {
@@ -95,7 +90,6 @@ class AvatarController extends ChangeNotifier {
       mouths = List<String>.from(data['mouths']);
       duration = (data['duration'] as num).toDouble();
       _lessonDuration = duration;
-      _referenceRms = (data['method']?['referenceRms'] as num? ?? 0).toDouble();
       source = data['source'];
       file = await rive.File.asset(rivAsset, riveFactory: rive.Factory.rive);
       if (_disposed) {
@@ -123,46 +117,15 @@ class AvatarController extends ChangeNotifier {
         throw StateError('Missing required avatar view model properties');
       }
       breathProperty!.value = _breathAmplitude;
-      audio.positionUpdater = TimerPositionUpdater(
-        getPosition: audio.getCurrentPosition,
-        interval: const Duration(milliseconds: 40),
-      );
-      _subscriptions.add(
-        audio.onPositionChanged.listen((p) {
-          if (!seeking && mode == AvatarAudioMode.offline) {
-            position = p.inMicroseconds / 1e6;
-            _sampleOffline();
-          }
-        }),
-      );
-      _subscriptions.add(
-        audio.onPlayerStateChanged.listen((s) {
-          if (mode != AvatarAudioMode.offline || _disposed) return;
-          playing = s == PlayerState.playing;
-          if (!playing && manualMouth == null) _forceNeutral = true;
-          _sampleOffline();
-        }),
-      );
-      _subscriptions.add(
-        audio.onPlayerComplete.listen((_) {
-          if (mode != AvatarAudioMode.offline || _disposed) return;
-          playing = false;
-          position = duration;
-          manualMouth = null;
-          _completed();
-        }),
-      );
       stream.onTick = _streamTick;
       stream.onComplete = () {
-        if (!_disposed && isStreaming) {
+        if (!_disposed) {
           playing = false;
           position = duration;
           _completed();
         }
       };
       stream.onError = _failure;
-      await audio.setReleaseMode(ReleaseMode.stop);
-      await audio.setSource(AssetSource(audioAsset));
       final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
       if (visemeAsset != null && manifest.listAssets().contains(visemeAsset)) {
         try {
@@ -176,11 +139,18 @@ class AvatarController extends ChangeNotifier {
               )
               .toString();
           lips.alignment = VisemeTrack.fromJson(json, hash);
+          if (lips.alignment!.events.isNotEmpty &&
+              lips.alignment!.events.last.end > duration + .001) {
+            lips.alignment = null;
+            throw const FormatException(
+              'Alignment extends beyond the recording',
+            );
+          }
           alignmentStatus = 'Aligned Korean visemes';
         } on FlutterError {
-          alignmentStatus = 'RMS fallback — no phone alignment loaded';
+          alignmentStatus = 'Audio-reactive fallback — no verified timings';
         } catch (e) {
-          alignmentStatus = 'RMS fallback — alignment rejected: $e';
+          alignmentStatus = 'Audio-reactive fallback — alignment rejected: $e';
         }
       }
       if (_disposed) return;
@@ -189,36 +159,15 @@ class AvatarController extends ChangeNotifier {
         const Duration(milliseconds: 33),
         (_) => _applyVisuals(),
       );
-      _sampleOffline();
+      _applyVisuals();
       _publish(force: true);
     } catch (e) {
       if (!_disposed) _failure(e);
     }
   }
 
-  void _sampleOffline() {
-    if (_disposed || frames.isEmpty) return;
-    var lo = 0, hi = frames.length - 1;
-    while (lo < hi) {
-      final mid = (lo + hi + 1) ~/ 2;
-      if ((frames[mid]['time'] as num) <= position) {
-        lo = mid;
-      } else {
-        hi = mid - 1;
-      }
-    }
-    final f = frames[lo];
-    _frame = EnergyFrame(
-      (f['time'] as num).toDouble(),
-      (f['rms'] as num).toDouble(),
-      (f['energy'] as num).toDouble(),
-      f['silence'] == true,
-    );
-    _applyVisuals();
-  }
-
   void _streamTick() {
-    if (_disposed || !isStreaming) return;
+    if (_disposed) return;
     position = _streamOffset + stream.consumed;
     playing = stream.audible;
     _frame = stream.frameAt(stream.consumed);
@@ -325,23 +274,14 @@ class AvatarController extends ChangeNotifier {
     if (!ready) return;
     try {
       manualMouth = null;
-      if (isStreaming) {
-        if (!stream.active) {
-          if (mode == AvatarAudioMode.localStream) {
-            await _startLocal(position >= duration - .05 ? 0 : position);
-          }
-        } else if (stream.paused) {
-          resume();
-        } else {
-          await pause();
+      if (!stream.active) {
+        if (mode != AvatarAudioMode.externalStream) {
+          await _startLocal(position >= duration - .05 ? 0 : position);
         }
-      } else if (playing) {
-        await pause();
+      } else if (stream.paused) {
+        resume();
       } else {
-        if (position >= duration - .05) await seek(0);
-        _forceNeutral = false;
-        behavior.onSpeaking();
-        await audio.resume();
+        await pause();
       }
       _publish(force: true);
     } catch (e) {
@@ -350,14 +290,9 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<void> pause() async {
-    if (isStreaming) {
-      _arrivalClock.stop();
-      stream.pause();
-      playing = false;
-    } else {
-      await audio.pause();
-      playing = false;
-    }
+    _arrivalClock.stop();
+    stream.pause();
+    playing = false;
     _forceNeutral = true;
     behavior.onIdle();
     _applyVisuals();
@@ -365,7 +300,7 @@ class AvatarController extends ChangeNotifier {
   }
 
   void resume() {
-    if (!isStreaming) {
+    if (!stream.active) {
       unawaited(toggle());
       return;
     }
@@ -378,19 +313,26 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<void> seek(double seconds) async {
+    if (mode == AvatarAudioMode.externalStream) return;
     seconds = seconds.clamp(0, duration);
     seeking = true;
     _lastSpeechPosition = null;
     lips.reset();
     try {
-      if (mode == AvatarAudioMode.localStream) {
-        final resume = transportActive;
+      final resumeAfterSeek = transportActive;
+      if (resumeAfterSeek) {
         await _startLocal(seconds);
-        if (!resume) await pause();
-      } else if (mode == AvatarAudioMode.offline) {
-        await audio.seek(Duration(microseconds: (seconds * 1e6).round()));
+      } else {
+        ++_turn;
+        _feedTimer?.cancel();
+        _arrivalClock.stop();
+        await stream.stop();
+        _streamOffset = seconds;
         position = seconds;
-        _sampleOffline();
+        playing = false;
+        _frame = EnergyFrame(seconds, 0, 0, true);
+        _forceNeutral = true;
+        _applyVisuals();
       }
     } catch (e) {
       _failure(e);
@@ -398,6 +340,15 @@ class AvatarController extends ChangeNotifier {
       seeking = false;
       _publish(force: true);
     }
+  }
+
+  LipSyncStyle get lipSyncStyle => lips.style;
+  void setLipSyncStyle(LipSyncStyle value) {
+    lips.style = value;
+    lips.reset();
+    // A/B share PCM analysis and transport. Changing the decision policy never
+    // interrupts audio or changes the consumed sample clock.
+    _publish(force: true);
   }
 
   Future<void> setAudioMode(AvatarAudioMode next) async {
@@ -413,7 +364,6 @@ class AvatarController extends ChangeNotifier {
   Future<void> _startLocal(double from) async {
     final turn = ++_turn;
     _feedTimer?.cancel();
-    await audio.pause();
     if (_wav == null) {
       final wavData = await rootBundle.load('assets/$audioAsset');
       _wav = PcmWav.parse(
@@ -424,8 +374,9 @@ class AvatarController extends ChangeNotifier {
       );
     }
     if (turn != _turn || _disposed) return;
-    mode = AvatarAudioMode.localStream;
-    await stream.start(rate: _wav!.sampleRate, referenceRms: _referenceRms);
+    playing = false;
+    _frame = EnergyFrame(from, 0, 0, true);
+    await stream.start(rate: _wav!.sampleRate);
     if (turn != _turn || _disposed) return;
     _streamOffset = from;
     position = from;
@@ -448,7 +399,7 @@ class AvatarController extends ChangeNotifier {
   void _feedLocal(int turn) {
     if (_disposed ||
         turn != _turn ||
-        mode != AvatarAudioMode.localStream ||
+        mode == AvatarAudioMode.externalStream ||
         !stream.active) {
       return;
     }
@@ -460,7 +411,9 @@ class AvatarController extends ChangeNotifier {
       if (!stream.paused) {
         for (
           var count = 0;
-          count < 6 && _arrivalDueMs <= _arrivalClock.elapsedMilliseconds;
+          count < 12 &&
+              (mode == AvatarAudioMode.offline ||
+                  _arrivalDueMs <= _arrivalClock.elapsedMilliseconds);
           count++
         ) {
           final wav = _wav!;
@@ -480,7 +433,9 @@ class AvatarController extends ChangeNotifier {
           _arrivalDueMs += delays[_arrivalIndex++ % delays.length];
         }
       }
-      final delay = stream.paused
+      final delay = mode == AvatarAudioMode.offline
+          ? 20
+          : stream.paused
           ? 40
           : backpressure
           ? 20
@@ -535,7 +490,6 @@ class AvatarController extends ChangeNotifier {
     _feedTimer?.cancel();
     _feedTimer = null;
     await stream.stop();
-    await audio.pause();
     playing = false;
     position = 0;
     _completed();
@@ -626,6 +580,8 @@ class AvatarController extends ChangeNotifier {
 
   Map<String, dynamic> get diagnostics => {
     'mode': mode.name,
+    'playbackEngine': 'SoLoud PCM16 consumed sample cursor for all sources',
+    'lipSyncStyle': lips.style.name,
     'alignment': alignmentStatus,
     'conversation': conversation.name,
     'emotion': emotion.name,
@@ -639,14 +595,10 @@ class AvatarController extends ChangeNotifier {
     ++_turn;
     _feedTimer?.cancel();
     _behaviorTimer?.cancel();
-    for (final s in _subscriptions) {
-      unawaited(s.cancel());
-    }
     stream.onTick = null;
     stream.onComplete = null;
     stream.onError = null;
     unawaited(stream.stop());
-    unawaited(audio.dispose());
     mouthProperty?.dispose();
     eyeProperty?.dispose();
     motionProperty?.dispose();

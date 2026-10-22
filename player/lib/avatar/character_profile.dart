@@ -1,5 +1,8 @@
 enum Viseme { neutral, a, ei, o, u, mbp }
 
+/// Artwork descriptions are deliberately independent of phoneme labels.
+enum MouthShape { neutral, closed, transitional, open, rounded, spread, smile }
+
 /// Only capabilities backed by the supplied artwork belong in a profile.
 class CharacterProfile {
   const CharacterProfile({
@@ -35,6 +38,15 @@ class CharacterProfile {
     this.emotionTiltDegrees = .12,
     this.positiveNodPixels = .55,
     this.laughBobPixels = .25,
+    this.shapes = const {
+      MouthShape.neutral: 6,
+      MouthShape.closed: 6,
+      MouthShape.transitional: 1,
+      MouthShape.open: 2,
+      MouthShape.rounded: 4,
+      MouthShape.spread: 5,
+      MouthShape.smile: 7,
+    },
   });
   final String id,
       rivAsset,
@@ -53,17 +65,18 @@ class CharacterProfile {
       emotionTiltProperty,
       emotionBobProperty;
   final double emotionTiltDegrees, positiveNodPixels, laughBobPixels;
+  final Map<MouthShape, int> shapes;
 
   static const teacher = CharacterProfile(
     id: 'teacher',
     rivAsset: 'assets/teacher.riv',
     backgroundAsset: 'assets/classroom_bg.png',
-    // A is restrained Medium; E/I shares subtle Teeth; O/U share Round.
-    // There are no distinct open smiling vowels or separate O and U images.
+    // Teeth is a broad toothy smile, not a neutral E/I vowel. Small is the
+    // closest restrained substitute. O/U still share one rounded image.
     visemes: {
       Viseme.neutral: 6,
       Viseme.a: 2,
-      Viseme.ei: 5,
+      Viseme.ei: 1,
       Viseme.o: 4,
       Viseme.u: 4,
       Viseme.mbp: 6,

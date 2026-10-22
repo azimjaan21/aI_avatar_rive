@@ -1,0 +1,1619 @@
+{
+  "result": "passed",
+  "case": "A",
+  "platform": "Windows Flutter integration debug",
+  "rig": "Original full-canvas PNGs and 45ms opacity fades",
+  "estimator": "rms",
+  "audioClock": {
+    "firstChunkToPlaybackCursorMs": 141.536,
+    "maxQueuedMs": 226.66700000000083,
+    "maxAllowedQueuedMs": 480.0,
+    "analysisFramesRetained": 18,
+    "visemeEventsRetained": 0,
+    "maxAnalysisFrameLagMs": 9.334000000000842,
+    "receivedSeconds": 10.28,
+    "consumedSeconds": 10.112,
+    "underruns": 0,
+    "clockPollMs": 20,
+    "clock": "SoLoud released-stream consumed sample cursor",
+    "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+  },
+  "wallSampleMs": 10286.316,
+  "processCpuMs": 4671.875,
+  "cpuPercentOfOneCore": 45.418349970971136,
+  "workingSetBefore": 404086784,
+  "workingSetAfter": 399855616,
+  "peakSampledRssBytes": 431013888,
+  "privateBytesAfter": 543150080,
+  "buildP95Ms": 19.111,
+  "rasterP95Ms": 1.665,
+  "frameSamples": 257,
+  "avatarDisplaySize": [
+    715.2,
+    726.0
+  ],
+  "mouthWidthDisplayPixels": 88.24309392265192,
+  "scope": "No capture during CPU sample. Debug desktop measurements, not mobile, release or acoustic latency.",
+  "trace": [
+    {
+      "time": 0.0,
+      "mouth": 6,
+      "energy": 0.0,
+      "silence": true
+    },
+    {
+      "time": 0.0,
+      "mouth": 6,
+      "energy": 0.0,
+      "silence": true
+    },
+    {
+      "time": 0.0,
+      "mouth": 6,
+      "energy": 0.0,
+      "silence": true
+    },
+    {
+      "time": 0.021333,
+      "mouth": 6,
+      "energy": 0.005627164097142778,
+      "silence": true
+    },
+    {
+      "time": 0.064,
+      "mouth": 6,
+      "energy": 0.010936508298877077,
+      "silence": true
+    },
+    {
+      "time": 0.106667,
+      "mouth": 6,
+      "energy": 0.012264307835521295,
+      "silence": true
+    },
+    {
+      "time": 0.149333,
+      "mouth": 6,
+      "energy": 0.01636098087671971,
+      "silence": true
+    },
+    {
+      "time": 0.170667,
+      "mouth": 6,
+      "energy": 0.015061434343757457,
+      "silence": true
+    },
+    {
+      "time": 0.192,
+      "mouth": 6,
+      "energy": 0.014520416383061594,
+      "silence": true
+    },
+    {
+      "time": 0.213333,
+      "mouth": 6,
+      "energy": 0.013754673185127363,
+      "silence": true
+    },
+    {
+      "time": 0.298667,
+      "mouth": 6,
+      "energy": 0.014078898488495604,
+      "silence": true
+    },
+    {
+      "time": 0.32,
+      "mouth": 6,
+      "energy": 0.014857646758271179,
+      "silence": true
+    },
+    {
+      "time": 0.384,
+      "mouth": 6,
+      "energy": 0.014626737334121686,
+      "silence": true
+    },
+    {
+      "time": 0.426667,
+      "mouth": 6,
+      "energy": 0.013982585115795422,
+      "silence": true
+    },
+    {
+      "time": 0.448,
+      "mouth": 6,
+      "energy": 0.014256275778004233,
+      "silence": true
+    },
+    {
+      "time": 0.512,
+      "mouth": 6,
+      "energy": 0.014372348957875558,
+      "silence": true
+    },
+    {
+      "time": 0.512,
+      "mouth": 6,
+      "energy": 0.014372348957875558,
+      "silence": true
+    },
+    {
+      "time": 0.554667,
+      "mouth": 6,
+      "energy": 0.015641873243399967,
+      "silence": true
+    },
+    {
+      "time": 0.618667,
+      "mouth": 6,
+      "energy": 0.014779530807035625,
+      "silence": true
+    },
+    {
+      "time": 0.64,
+      "mouth": 6,
+      "energy": 0.014529953206133747,
+      "silence": true
+    },
+    {
+      "time": 0.682667,
+      "mouth": 6,
+      "energy": 0.015669922361622277,
+      "silence": true
+    },
+    {
+      "time": 0.746667,
+      "mouth": 6,
+      "energy": 0.024104559470223687,
+      "silence": true
+    },
+    {
+      "time": 0.789333,
+      "mouth": 6,
+      "energy": 0.021847374429617036,
+      "silence": true
+    },
+    {
+      "time": 0.832,
+      "mouth": 6,
+      "energy": 0.020029097412449865,
+      "silence": true
+    },
+    {
+      "time": 0.853333,
+      "mouth": 6,
+      "energy": 0.019072225224227687,
+      "silence": true
+    },
+    {
+      "time": 0.917333,
+      "mouth": 6,
+      "energy": 0.020124259722642857,
+      "silence": true
+    },
+    {
+      "time": 0.938667,
+      "mouth": 6,
+      "energy": 0.02165256786958672,
+      "silence": true
+    },
+    {
+      "time": 0.981333,
+      "mouth": 6,
+      "energy": 0.028230678360964764,
+      "silence": true
+    },
+    {
+      "time": 1.024,
+      "mouth": 6,
+      "energy": 0.03389696391156716,
+      "silence": true
+    },
+    {
+      "time": 1.066667,
+      "mouth": 6,
+      "energy": 0.04062288989902422,
+      "silence": true
+    },
+    {
+      "time": 1.109333,
+      "mouth": 6,
+      "energy": 0.04295849641963229,
+      "silence": true
+    },
+    {
+      "time": 1.152,
+      "mouth": 6,
+      "energy": 0.0391893080717005,
+      "silence": true
+    },
+    {
+      "time": 1.173333,
+      "mouth": 6,
+      "energy": 0.03521181416761463,
+      "silence": true
+    },
+    {
+      "time": 1.216,
+      "mouth": 6,
+      "energy": 0.02765234639071137,
+      "silence": true
+    },
+    {
+      "time": 1.258667,
+      "mouth": 6,
+      "energy": 0.02546270912362978,
+      "silence": true
+    },
+    {
+      "time": 1.301333,
+      "mouth": 6,
+      "energy": 0.4277788058630072,
+      "silence": false
+    },
+    {
+      "time": 1.344,
+      "mouth": 6,
+      "energy": 0.6984660675465604,
+      "silence": false
+    },
+    {
+      "time": 1.386667,
+      "mouth": 2,
+      "energy": 0.6605391219776141,
+      "silence": false
+    },
+    {
+      "time": 1.429333,
+      "mouth": 2,
+      "energy": 0.45048312110316174,
+      "silence": false
+    },
+    {
+      "time": 1.472,
+      "mouth": 2,
+      "energy": 0.28762143146691566,
+      "silence": false
+    },
+    {
+      "time": 1.493333,
+      "mouth": 1,
+      "energy": 0.2334848501648379,
+      "silence": false
+    },
+    {
+      "time": 1.536,
+      "mouth": 1,
+      "energy": 0.7089418038662889,
+      "silence": false
+    },
+    {
+      "time": 1.578667,
+      "mouth": 2,
+      "energy": 0.6883041379926036,
+      "silence": false
+    },
+    {
+      "time": 1.621333,
+      "mouth": 2,
+      "energy": 0.6701887204926951,
+      "silence": false
+    },
+    {
+      "time": 1.664,
+      "mouth": 2,
+      "energy": 0.7232170267382478,
+      "silence": false
+    },
+    {
+      "time": 1.706667,
+      "mouth": 2,
+      "energy": 0.6477056783006814,
+      "silence": false
+    },
+    {
+      "time": 1.749333,
+      "mouth": 2,
+      "energy": 0.4822666597815065,
+      "silence": false
+    },
+    {
+      "time": 1.792,
+      "mouth": 2,
+      "energy": 0.34981097374800946,
+      "silence": false
+    },
+    {
+      "time": 1.813333,
+      "mouth": 6,
+      "energy": 0.26952779530060267,
+      "silence": true
+    },
+    {
+      "time": 1.856,
+      "mouth": 6,
+      "energy": 0.17708999046315563,
+      "silence": false
+    },
+    {
+      "time": 1.898667,
+      "mouth": 1,
+      "energy": 0.14957908620155164,
+      "silence": false
+    },
+    {
+      "time": 1.92,
+      "mouth": 1,
+      "energy": 0.5731046761053824,
+      "silence": false
+    },
+    {
+      "time": 1.984,
+      "mouth": 2,
+      "energy": 0.8871188888164322,
+      "silence": false
+    },
+    {
+      "time": 2.026667,
+      "mouth": 2,
+      "energy": 0.8783951725436426,
+      "silence": false
+    },
+    {
+      "time": 2.069333,
+      "mouth": 2,
+      "energy": 0.8388255890299363,
+      "silence": false
+    },
+    {
+      "time": 2.112,
+      "mouth": 2,
+      "energy": 0.7873219450343776,
+      "silence": false
+    },
+    {
+      "time": 2.112,
+      "mouth": 2,
+      "energy": 0.7873219450343776,
+      "silence": false
+    },
+    {
+      "time": 2.176,
+      "mouth": 2,
+      "energy": 0.7711158761953572,
+      "silence": false
+    },
+    {
+      "time": 2.218667,
+      "mouth": 2,
+      "energy": 0.7316039790067773,
+      "silence": false
+    },
+    {
+      "time": 2.24,
+      "mouth": 2,
+      "energy": 0.6985312377989938,
+      "silence": false
+    },
+    {
+      "time": 2.304,
+      "mouth": 2,
+      "energy": 0.6184088866291181,
+      "silence": false
+    },
+    {
+      "time": 2.325333,
+      "mouth": 2,
+      "energy": 0.5777825129852867,
+      "silence": false
+    },
+    {
+      "time": 2.368,
+      "mouth": 2,
+      "energy": 0.524421345947381,
+      "silence": false
+    },
+    {
+      "time": 2.432,
+      "mouth": 2,
+      "energy": 0.709306871785744,
+      "silence": false
+    },
+    {
+      "time": 2.432,
+      "mouth": 2,
+      "energy": 0.709306871785744,
+      "silence": false
+    },
+    {
+      "time": 2.474667,
+      "mouth": 2,
+      "energy": 0.589364714605718,
+      "silence": false
+    },
+    {
+      "time": 2.517333,
+      "mouth": 2,
+      "energy": 0.6961401272071007,
+      "silence": false
+    },
+    {
+      "time": 2.56,
+      "mouth": 2,
+      "energy": 0.6769421336649306,
+      "silence": false
+    },
+    {
+      "time": 2.624,
+      "mouth": 2,
+      "energy": 0.4648599395523104,
+      "silence": false
+    },
+    {
+      "time": 2.645333,
+      "mouth": 2,
+      "energy": 0.5385047445661966,
+      "silence": false
+    },
+    {
+      "time": 2.688,
+      "mouth": 2,
+      "energy": 0.5297483187534967,
+      "silence": false
+    },
+    {
+      "time": 2.730667,
+      "mouth": 2,
+      "energy": 0.4612785428274302,
+      "silence": false
+    },
+    {
+      "time": 2.752,
+      "mouth": 2,
+      "energy": 0.4723653769141617,
+      "silence": false
+    },
+    {
+      "time": 2.794667,
+      "mouth": 2,
+      "energy": 0.5223176195700123,
+      "silence": false
+    },
+    {
+      "time": 2.858667,
+      "mouth": 2,
+      "energy": 0.5089912446048253,
+      "silence": false
+    },
+    {
+      "time": 2.88,
+      "mouth": 2,
+      "energy": 0.4664652285331232,
+      "silence": false
+    },
+    {
+      "time": 2.944,
+      "mouth": 6,
+      "energy": 0.2446410243811692,
+      "silence": true
+    },
+    {
+      "time": 2.965333,
+      "mouth": 6,
+      "energy": 0.20492410365006697,
+      "silence": true
+    },
+    {
+      "time": 3.008,
+      "mouth": 6,
+      "energy": 0.6107057140211345,
+      "silence": false
+    },
+    {
+      "time": 3.072,
+      "mouth": 2,
+      "energy": 0.5894894728051112,
+      "silence": false
+    },
+    {
+      "time": 3.072,
+      "mouth": 2,
+      "energy": 0.5894894728051112,
+      "silence": false
+    },
+    {
+      "time": 3.114667,
+      "mouth": 6,
+      "energy": 0.3406425753107788,
+      "silence": true
+    },
+    {
+      "time": 3.157333,
+      "mouth": 6,
+      "energy": 0.21536672670541768,
+      "silence": false
+    },
+    {
+      "time": 3.2,
+      "mouth": 6,
+      "energy": 0.6451774480687066,
+      "silence": false
+    },
+    {
+      "time": 3.221333,
+      "mouth": 2,
+      "energy": 0.6726796265835305,
+      "silence": false
+    },
+    {
+      "time": 3.264,
+      "mouth": 2,
+      "energy": 0.5767496793483939,
+      "silence": false
+    },
+    {
+      "time": 3.306667,
+      "mouth": 2,
+      "energy": 0.4593386888580985,
+      "silence": false
+    },
+    {
+      "time": 3.328,
+      "mouth": 2,
+      "energy": 0.4652830314701297,
+      "silence": false
+    },
+    {
+      "time": 3.392,
+      "mouth": 2,
+      "energy": 0.4747085436224372,
+      "silence": false
+    },
+    {
+      "time": 3.413333,
+      "mouth": 2,
+      "energy": 0.43018425292466034,
+      "silence": false
+    },
+    {
+      "time": 3.434667,
+      "mouth": 2,
+      "energy": 0.39692387365659026,
+      "silence": false
+    },
+    {
+      "time": 3.498667,
+      "mouth": 2,
+      "energy": 0.3098088791525311,
+      "silence": false
+    },
+    {
+      "time": 3.52,
+      "mouth": 2,
+      "energy": 0.3388967321077093,
+      "silence": false
+    },
+    {
+      "time": 3.562667,
+      "mouth": 2,
+      "energy": 0.37335805216413176,
+      "silence": false
+    },
+    {
+      "time": 3.626667,
+      "mouth": 2,
+      "energy": 0.30199420756238327,
+      "silence": false
+    },
+    {
+      "time": 3.648,
+      "mouth": 2,
+      "energy": 0.2636893004775894,
+      "silence": false
+    },
+    {
+      "time": 3.690667,
+      "mouth": 2,
+      "energy": 0.6308184897331808,
+      "silence": false
+    },
+    {
+      "time": 3.712,
+      "mouth": 2,
+      "energy": 0.6990673124654296,
+      "silence": false
+    },
+    {
+      "time": 3.754667,
+      "mouth": 2,
+      "energy": 0.7034202054078972,
+      "silence": false
+    },
+    {
+      "time": 3.797333,
+      "mouth": 2,
+      "energy": 0.6270283527117652,
+      "silence": false
+    },
+    {
+      "time": 3.84,
+      "mouth": 2,
+      "energy": 0.4848158996456087,
+      "silence": false
+    },
+    {
+      "time": 3.882667,
+      "mouth": 2,
+      "energy": 0.3761774566760425,
+      "silence": false
+    },
+    {
+      "time": 3.925333,
+      "mouth": 6,
+      "energy": 0.23996871274680576,
+      "silence": true
+    },
+    {
+      "time": 3.968,
+      "mouth": 6,
+      "energy": 0.14576618904552896,
+      "silence": true
+    },
+    {
+      "time": 4.010667,
+      "mouth": 6,
+      "energy": 0.08827837780850568,
+      "silence": true
+    },
+    {
+      "time": 4.032,
+      "mouth": 6,
+      "energy": 0.07479468122124061,
+      "silence": true
+    },
+    {
+      "time": 4.074667,
+      "mouth": 6,
+      "energy": 0.05782888547651593,
+      "silence": true
+    },
+    {
+      "time": 4.117333,
+      "mouth": 6,
+      "energy": 0.04257922627928417,
+      "silence": true
+    },
+    {
+      "time": 4.16,
+      "mouth": 6,
+      "energy": 0.030958791464117754,
+      "silence": true
+    },
+    {
+      "time": 4.202667,
+      "mouth": 6,
+      "energy": 0.023634663149192662,
+      "silence": true
+    },
+    {
+      "time": 4.245333,
+      "mouth": 6,
+      "energy": 0.18059158648765442,
+      "silence": false
+    },
+    {
+      "time": 4.288,
+      "mouth": 6,
+      "energy": 0.6731956688091135,
+      "silence": false
+    },
+    {
+      "time": 4.330667,
+      "mouth": 6,
+      "energy": 0.3783756512843536,
+      "silence": true
+    },
+    {
+      "time": 4.352,
+      "mouth": 6,
+      "energy": 0.2888369170158564,
+      "silence": true
+    },
+    {
+      "time": 4.394667,
+      "mouth": 6,
+      "energy": 0.1926008885699997,
+      "silence": false
+    },
+    {
+      "time": 4.437333,
+      "mouth": 6,
+      "energy": 0.4382563762567011,
+      "silence": false
+    },
+    {
+      "time": 4.48,
+      "mouth": 2,
+      "energy": 0.838147734188299,
+      "silence": false
+    },
+    {
+      "time": 4.522666,
+      "mouth": 2,
+      "energy": 0.6236861550000833,
+      "silence": false
+    },
+    {
+      "time": 4.565333,
+      "mouth": 2,
+      "energy": 0.7894070054852254,
+      "silence": false
+    },
+    {
+      "time": 4.608,
+      "mouth": 2,
+      "energy": 0.8345199341702957,
+      "silence": false
+    },
+    {
+      "time": 4.650667,
+      "mouth": 2,
+      "energy": 0.809681127370721,
+      "silence": false
+    },
+    {
+      "time": 4.672,
+      "mouth": 2,
+      "energy": 0.7821019485447904,
+      "silence": false
+    },
+    {
+      "time": 4.714667,
+      "mouth": 2,
+      "energy": 0.7244528625291993,
+      "silence": false
+    },
+    {
+      "time": 4.757333,
+      "mouth": 2,
+      "energy": 0.596980598205163,
+      "silence": false
+    },
+    {
+      "time": 4.8,
+      "mouth": 2,
+      "energy": 0.48275745545534393,
+      "silence": false
+    },
+    {
+      "time": 4.842667,
+      "mouth": 2,
+      "energy": 0.4363179541597092,
+      "silence": false
+    },
+    {
+      "time": 4.864,
+      "mouth": 2,
+      "energy": 0.40197029087688696,
+      "silence": false
+    },
+    {
+      "time": 4.928,
+      "mouth": 2,
+      "energy": 0.28163271888603425,
+      "silence": false
+    },
+    {
+      "time": 4.970667,
+      "mouth": 1,
+      "energy": 0.29940260457468126,
+      "silence": false
+    },
+    {
+      "time": 4.992,
+      "mouth": 1,
+      "energy": 0.4647500456739468,
+      "silence": false
+    },
+    {
+      "time": 5.034667,
+      "mouth": 2,
+      "energy": 0.6057624108122934,
+      "silence": false
+    },
+    {
+      "time": 5.056,
+      "mouth": 2,
+      "energy": 0.6472195349906278,
+      "silence": false
+    },
+    {
+      "time": 5.098667,
+      "mouth": 2,
+      "energy": 0.6737011594081389,
+      "silence": false
+    },
+    {
+      "time": 5.162667,
+      "mouth": 2,
+      "energy": 0.4556239996629263,
+      "silence": false
+    },
+    {
+      "time": 5.184,
+      "mouth": 2,
+      "energy": 0.4093124928028044,
+      "silence": false
+    },
+    {
+      "time": 5.226666,
+      "mouth": 2,
+      "energy": 0.33466052837644406,
+      "silence": false
+    },
+    {
+      "time": 5.269333,
+      "mouth": 2,
+      "energy": 0.2664147902928968,
+      "silence": false
+    },
+    {
+      "time": 5.312,
+      "mouth": 2,
+      "energy": 0.34269957322867595,
+      "silence": false
+    },
+    {
+      "time": 5.354667,
+      "mouth": 2,
+      "energy": 0.4373015560960412,
+      "silence": false
+    },
+    {
+      "time": 5.376,
+      "mouth": 2,
+      "energy": 0.5077951848332983,
+      "silence": false
+    },
+    {
+      "time": 5.418667,
+      "mouth": 2,
+      "energy": 0.5159815898343366,
+      "silence": false
+    },
+    {
+      "time": 5.461333,
+      "mouth": 2,
+      "energy": 0.42095177736210526,
+      "silence": false
+    },
+    {
+      "time": 5.504,
+      "mouth": 2,
+      "energy": 0.4967585149834629,
+      "silence": false
+    },
+    {
+      "time": 5.546667,
+      "mouth": 2,
+      "energy": 0.5307878632697193,
+      "silence": false
+    },
+    {
+      "time": 5.589334,
+      "mouth": 2,
+      "energy": 0.5110733184186569,
+      "silence": false
+    },
+    {
+      "time": 5.632,
+      "mouth": 2,
+      "energy": 0.38082460495955534,
+      "silence": false
+    },
+    {
+      "time": 5.653333,
+      "mouth": 2,
+      "energy": 0.31794828882882686,
+      "silence": false
+    },
+    {
+      "time": 5.696,
+      "mouth": 6,
+      "energy": 0.2107368012452956,
+      "silence": true
+    },
+    {
+      "time": 5.738667,
+      "mouth": 6,
+      "energy": 0.33838785130563803,
+      "silence": false
+    },
+    {
+      "time": 5.76,
+      "mouth": 6,
+      "energy": 0.4026553338535221,
+      "silence": false
+    },
+    {
+      "time": 5.824,
+      "mouth": 2,
+      "energy": 0.42598468212717966,
+      "silence": false
+    },
+    {
+      "time": 5.866667,
+      "mouth": 2,
+      "energy": 0.5569256946316795,
+      "silence": false
+    },
+    {
+      "time": 5.909333,
+      "mouth": 2,
+      "energy": 0.5991562251242204,
+      "silence": false
+    },
+    {
+      "time": 5.952,
+      "mouth": 2,
+      "energy": 0.5030497236052562,
+      "silence": false
+    },
+    {
+      "time": 5.952,
+      "mouth": 2,
+      "energy": 0.5030497236052562,
+      "silence": false
+    },
+    {
+      "time": 6.016,
+      "mouth": 2,
+      "energy": 0.5294934129182642,
+      "silence": false
+    },
+    {
+      "time": 6.058667,
+      "mouth": 2,
+      "energy": 0.5507694670119898,
+      "silence": false
+    },
+    {
+      "time": 6.08,
+      "mouth": 6,
+      "energy": 0.378386817424673,
+      "silence": true
+    },
+    {
+      "time": 6.144,
+      "mouth": 6,
+      "energy": 0.3563751944996214,
+      "silence": false
+    },
+    {
+      "time": 6.165333,
+      "mouth": 6,
+      "energy": 0.36429668578271185,
+      "silence": false
+    },
+    {
+      "time": 6.208,
+      "mouth": 6,
+      "energy": 0.21628324549016592,
+      "silence": true
+    },
+    {
+      "time": 6.272,
+      "mouth": 6,
+      "energy": 0.13149681608956787,
+      "silence": false
+    },
+    {
+      "time": 6.272,
+      "mouth": 6,
+      "energy": 0.13149681608956787,
+      "silence": false
+    },
+    {
+      "time": 6.314667,
+      "mouth": 6,
+      "energy": 0.2866152600076568,
+      "silence": false
+    },
+    {
+      "time": 6.357333,
+      "mouth": 6,
+      "energy": 0.22333258902422592,
+      "silence": true
+    },
+    {
+      "time": 6.4,
+      "mouth": 6,
+      "energy": 0.31002583895980895,
+      "silence": false
+    },
+    {
+      "time": 6.464,
+      "mouth": 2,
+      "energy": 0.4548700007421978,
+      "silence": false
+    },
+    {
+      "time": 6.485333,
+      "mouth": 2,
+      "energy": 0.4306673763900964,
+      "silence": false
+    },
+    {
+      "time": 6.528,
+      "mouth": 2,
+      "energy": 0.39529724406550854,
+      "silence": false
+    },
+    {
+      "time": 6.570667,
+      "mouth": 6,
+      "energy": 0.2587877863221041,
+      "silence": true
+    },
+    {
+      "time": 6.592,
+      "mouth": 6,
+      "energy": 0.27471669986441943,
+      "silence": false
+    },
+    {
+      "time": 6.613333,
+      "mouth": 6,
+      "energy": 0.3497918113813219,
+      "silence": false
+    },
+    {
+      "time": 6.656,
+      "mouth": 2,
+      "energy": 0.40887823055225736,
+      "silence": false
+    },
+    {
+      "time": 6.677333,
+      "mouth": 2,
+      "energy": 0.3828251661702285,
+      "silence": false
+    },
+    {
+      "time": 6.72,
+      "mouth": 2,
+      "energy": 0.339947895724293,
+      "silence": false
+    },
+    {
+      "time": 6.762667,
+      "mouth": 2,
+      "energy": 0.2794064593164445,
+      "silence": false
+    },
+    {
+      "time": 6.805333,
+      "mouth": 6,
+      "energy": 0.16492927145479408,
+      "silence": true
+    },
+    {
+      "time": 6.848,
+      "mouth": 6,
+      "energy": 0.09826619733984697,
+      "silence": true
+    },
+    {
+      "time": 6.890666,
+      "mouth": 6,
+      "energy": 0.060599328605304835,
+      "silence": true
+    },
+    {
+      "time": 6.912,
+      "mouth": 6,
+      "energy": 0.14542629775252164,
+      "silence": false
+    },
+    {
+      "time": 6.954667,
+      "mouth": 6,
+      "energy": 0.3526789318736386,
+      "silence": false
+    },
+    {
+      "time": 6.997334,
+      "mouth": 2,
+      "energy": 0.31071280435294735,
+      "silence": false
+    },
+    {
+      "time": 7.04,
+      "mouth": 2,
+      "energy": 0.2693135560468334,
+      "silence": false
+    },
+    {
+      "time": 7.061333,
+      "mouth": 2,
+      "energy": 0.27871734799033665,
+      "silence": false
+    },
+    {
+      "time": 7.125333,
+      "mouth": 2,
+      "energy": 0.25007595175369934,
+      "silence": false
+    },
+    {
+      "time": 7.168,
+      "mouth": 2,
+      "energy": 0.4438593910002344,
+      "silence": false
+    },
+    {
+      "time": 7.189333,
+      "mouth": 2,
+      "energy": 0.5128701593042035,
+      "silence": false
+    },
+    {
+      "time": 7.232,
+      "mouth": 2,
+      "energy": 0.5385686377083247,
+      "silence": false
+    },
+    {
+      "time": 7.253334,
+      "mouth": 2,
+      "energy": 0.5103982895076157,
+      "silence": false
+    },
+    {
+      "time": 7.296,
+      "mouth": 2,
+      "energy": 0.41293263310059053,
+      "silence": false
+    },
+    {
+      "time": 7.36,
+      "mouth": 6,
+      "energy": 0.16848514049320656,
+      "silence": true
+    },
+    {
+      "time": 7.381333,
+      "mouth": 6,
+      "energy": 0.13320311893512032,
+      "silence": true
+    },
+    {
+      "time": 7.445333,
+      "mouth": 6,
+      "energy": 0.07574898060562271,
+      "silence": true
+    },
+    {
+      "time": 7.466667,
+      "mouth": 6,
+      "energy": 0.06655866622121569,
+      "silence": true
+    },
+    {
+      "time": 7.509333,
+      "mouth": 6,
+      "energy": 0.051616012808685656,
+      "silence": true
+    },
+    {
+      "time": 7.552,
+      "mouth": 6,
+      "energy": 0.03519719463036362,
+      "silence": true
+    },
+    {
+      "time": 7.573333,
+      "mouth": 6,
+      "energy": 0.031304587024950904,
+      "silence": true
+    },
+    {
+      "time": 7.616,
+      "mouth": 6,
+      "energy": 0.02385496053235776,
+      "silence": true
+    },
+    {
+      "time": 7.658667,
+      "mouth": 6,
+      "energy": 0.04156062720341128,
+      "silence": true
+    },
+    {
+      "time": 7.701334,
+      "mouth": 6,
+      "energy": 0.18733248198930832,
+      "silence": false
+    },
+    {
+      "time": 7.765333,
+      "mouth": 2,
+      "energy": 0.5421359391527274,
+      "silence": false
+    },
+    {
+      "time": 7.786667,
+      "mouth": 2,
+      "energy": 0.5127897868936694,
+      "silence": false
+    },
+    {
+      "time": 7.829333,
+      "mouth": 2,
+      "energy": 0.39727485910136406,
+      "silence": false
+    },
+    {
+      "time": 7.872,
+      "mouth": 6,
+      "energy": 0.20375225154507717,
+      "silence": true
+    },
+    {
+      "time": 7.893333,
+      "mouth": 6,
+      "energy": 0.19213750174845232,
+      "silence": false
+    },
+    {
+      "time": 7.936,
+      "mouth": 6,
+      "energy": 0.4100303356335425,
+      "silence": false
+    },
+    {
+      "time": 7.978667,
+      "mouth": 2,
+      "energy": 0.7766741721507293,
+      "silence": false
+    },
+    {
+      "time": 8.021334,
+      "mouth": 2,
+      "energy": 0.5622483877803367,
+      "silence": false
+    },
+    {
+      "time": 8.064,
+      "mouth": 2,
+      "energy": 0.4747594552070162,
+      "silence": false
+    },
+    {
+      "time": 8.106667,
+      "mouth": 2,
+      "energy": 0.5191788657373002,
+      "silence": false
+    },
+    {
+      "time": 8.149333,
+      "mouth": 2,
+      "energy": 0.4507782458760642,
+      "silence": false
+    },
+    {
+      "time": 8.192,
+      "mouth": 2,
+      "energy": 0.4559962835328492,
+      "silence": false
+    },
+    {
+      "time": 8.213333,
+      "mouth": 2,
+      "energy": 0.48422974669765156,
+      "silence": false
+    },
+    {
+      "time": 8.256,
+      "mouth": 2,
+      "energy": 0.44307766887346234,
+      "silence": false
+    },
+    {
+      "time": 8.298667,
+      "mouth": 2,
+      "energy": 0.3884672691012641,
+      "silence": false
+    },
+    {
+      "time": 8.341333,
+      "mouth": 2,
+      "energy": 0.4024407477399523,
+      "silence": false
+    },
+    {
+      "time": 8.362667,
+      "mouth": 2,
+      "energy": 0.4808332851306139,
+      "silence": false
+    },
+    {
+      "time": 8.426666,
+      "mouth": 2,
+      "energy": 0.3914245817162473,
+      "silence": false
+    },
+    {
+      "time": 8.448,
+      "mouth": 6,
+      "energy": 0.3013230663648264,
+      "silence": true
+    },
+    {
+      "time": 8.469334,
+      "mouth": 6,
+      "energy": 0.23067245720842916,
+      "silence": true
+    },
+    {
+      "time": 8.512,
+      "mouth": 6,
+      "energy": 0.12171633481309771,
+      "silence": true
+    },
+    {
+      "time": 8.554667,
+      "mouth": 6,
+      "energy": 0.07347809985157977,
+      "silence": true
+    },
+    {
+      "time": 8.597333,
+      "mouth": 6,
+      "energy": 0.5033589686876503,
+      "silence": false
+    },
+    {
+      "time": 8.64,
+      "mouth": 2,
+      "energy": 0.7303957642358532,
+      "silence": false
+    },
+    {
+      "time": 8.661333,
+      "mouth": 2,
+      "energy": 0.5771946635639611,
+      "silence": false
+    },
+    {
+      "time": 8.725333,
+      "mouth": 6,
+      "energy": 0.4193148688951157,
+      "silence": false
+    },
+    {
+      "time": 8.768,
+      "mouth": 6,
+      "energy": 0.4767313751670076,
+      "silence": false
+    },
+    {
+      "time": 8.789333,
+      "mouth": 2,
+      "energy": 0.5098697430373311,
+      "silence": false
+    },
+    {
+      "time": 8.832,
+      "mouth": 2,
+      "energy": 0.5147537391820167,
+      "silence": false
+    },
+    {
+      "time": 8.853333,
+      "mouth": 2,
+      "energy": 0.43985395935320293,
+      "silence": false
+    },
+    {
+      "time": 8.896,
+      "mouth": 6,
+      "energy": 0.2560264207148166,
+      "silence": true
+    },
+    {
+      "time": 8.96,
+      "mouth": 6,
+      "energy": 0.1043213447374816,
+      "silence": true
+    },
+    {
+      "time": 8.981334,
+      "mouth": 6,
+      "energy": 0.09227656638150475,
+      "silence": true
+    },
+    {
+      "time": 9.024,
+      "mouth": 6,
+      "energy": 0.11215782829993239,
+      "silence": false
+    },
+    {
+      "time": 9.066667,
+      "mouth": 6,
+      "energy": 0.29300228605612644,
+      "silence": false
+    },
+    {
+      "time": 9.109333,
+      "mouth": 1,
+      "energy": 0.3116282007495016,
+      "silence": false
+    },
+    {
+      "time": 9.152,
+      "mouth": 1,
+      "energy": 0.2703012357600827,
+      "silence": false
+    },
+    {
+      "time": 9.173333,
+      "mouth": 1,
+      "energy": 0.23502728563481087,
+      "silence": false
+    },
+    {
+      "time": 9.216,
+      "mouth": 6,
+      "energy": 0.139071612494591,
+      "silence": true
+    },
+    {
+      "time": 9.258667,
+      "mouth": 6,
+      "energy": 0.10249043600423567,
+      "silence": true
+    },
+    {
+      "time": 9.301333,
+      "mouth": 6,
+      "energy": 0.1383469182995942,
+      "silence": false
+    },
+    {
+      "time": 9.365334,
+      "mouth": 2,
+      "energy": 0.5487544640876412,
+      "silence": false
+    },
+    {
+      "time": 9.386666,
+      "mouth": 2,
+      "energy": 0.5493631535325271,
+      "silence": false
+    },
+    {
+      "time": 9.429334,
+      "mouth": 2,
+      "energy": 0.41820322881110156,
+      "silence": false
+    },
+    {
+      "time": 9.472,
+      "mouth": 6,
+      "energy": 0.2317915280144681,
+      "silence": true
+    },
+    {
+      "time": 9.493333,
+      "mouth": 6,
+      "energy": 0.1802478148531493,
+      "silence": true
+    },
+    {
+      "time": 9.536,
+      "mouth": 6,
+      "energy": 0.113023328231572,
+      "silence": true
+    },
+    {
+      "time": 9.578667,
+      "mouth": 6,
+      "energy": 0.08559716528549616,
+      "silence": true
+    },
+    {
+      "time": 9.621333,
+      "mouth": 6,
+      "energy": 0.09347143885654455,
+      "silence": true
+    },
+    {
+      "time": 9.664,
+      "mouth": 6,
+      "energy": 0.060467032312855176,
+      "silence": true
+    },
+    {
+      "time": 9.685333,
+      "mouth": 6,
+      "energy": 0.048313856356389996,
+      "silence": true
+    },
+    {
+      "time": 9.728,
+      "mouth": 6,
+      "energy": 0.15111961576458094,
+      "silence": false
+    },
+    {
+      "time": 9.770667,
+      "mouth": 1,
+      "energy": 0.1924827095509948,
+      "silence": false
+    },
+    {
+      "time": 9.792,
+      "mouth": 1,
+      "energy": 0.18763212728667403,
+      "silence": false
+    },
+    {
+      "time": 9.834666,
+      "mouth": 1,
+      "energy": 0.16723955707139318,
+      "silence": false
+    }
+  ],
+  "visualSpeechFrames": [
+    {
+      "file": "A-speech-0.png",
+      "time": 2.602667,
+      "mouth": 2,
+      "silence": false
+    },
+    {
+      "file": "A-speech-1.png",
+      "time": 3.52,
+      "mouth": 2,
+      "silence": false
+    },
+    {
+      "file": "A-speech-2.png",
+      "time": 4.437333,
+      "mouth": 6,
+      "silence": false
+    },
+    {
+      "file": "A-speech-3.png",
+      "time": 5.376,
+      "mouth": 2,
+      "silence": false
+    },
+    {
+      "file": "A-speech-4.png",
+      "time": 6.314667,
+      "mouth": 6,
+      "silence": false
+    },
+    {
+      "file": "A-speech-5.png",
+      "time": 7.253334,
+      "mouth": 2,
+      "silence": false
+    },
+    {
+      "file": "A-speech-6.png",
+      "time": 8.170667,
+      "mouth": 2,
+      "silence": false
+    },
+    {
+      "file": "A-speech-7.png",
+      "time": 9.130667,
+      "mouth": 1,
+      "silence": false
+    }
+  ]
+}

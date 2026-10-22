@@ -1,5 +1,7 @@
 # Adaptive avatar implementation
 
+This records the initial adaptive-controller update. The [current mouth quality report](LIPSYNC_QUALITY.md) supersedes its playback-engine, mouth mapping and performance details.
+
 The existing Teacher rig and studio UI remain in place. A collapsed **Behavior lab** adds local streaming simulation, expression controls and conversation-state controls. The bundled recording is now a [12.12-second Korean female solo narration](AUDIO_SOURCE.md).
 
 ## Implemented
@@ -22,7 +24,7 @@ The existing Teacher rig and studio UI remain in place. A collapsed **Behavior l
 
 The [alignment importer](../gettopik-teacher/tools/import_phone_alignment.py) accepts an actual long-format TextGrid with phone and word tiers, checks the word tier against the transcript, and writes a hash-bound viseme JSON. It requires an external offline aligner and its Korean model/dictionary. [MFA publishes a Korean acoustic model](https://mfa-models.readthedocs.io/en/latest/acoustic/Korean/) and [Korean pronunciation dictionary](https://mfa-models.readthedocs.io/en/latest/dictionary/Korean/Korean%20MFA%20dictionary%20v3_0_0.html). No MFA/Conda installation was available in this environment; no phoneme timing is claimed. The default optional path is `player/assets/korean_visemes.json`; the existing `assets/` directory declaration includes that file when supplied. A missing or invalid alignment leaves the explicit RMS fallback label visible.
 
-Automatic emotion or laughter recognition from arbitrary audio is **not implemented**. Expressions are controlled manually or by external events. Smile and speech coexist as controller layers, but the existing images do not contain open smiling vowel variants: articulation takes priority and the Smile image is used during weak voiced openings or idle. O and U share Round; E/I share subtle Teeth. No new eye art or facial deformation was introduced.
+Automatic emotion or laughter recognition from arbitrary audio is **not implemented**. Expressions are controlled manually or by external events. Smile and speech coexist as controller layers, but the existing images do not contain open smiling vowel variants: articulation takes priority and the Smile image is used during weak voiced openings or idle. O and U share Round; the current rig uses Small for E/I because Teeth is a toothy spread/smile. No new eye art or facial deformation was introduced.
 
 Whole-avatar sway remains the existing fallback because the head artwork includes shoulders. This is a flat PNG rig, so the positive nod is a small 2D gesture rather than a 3D head nod. Mobile platforms have not been run or benchmarked.
 

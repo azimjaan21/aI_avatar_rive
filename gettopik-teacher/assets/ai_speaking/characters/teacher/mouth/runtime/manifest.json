@@ -1,0 +1,168 @@
+{
+  "poses": [
+    {
+      "name": "closed_press",
+      "box": [
+        458,
+        642,
+        634,
+        708
+      ],
+      "alphaBounds": [
+        460,
+        644,
+        632,
+        706
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "c395f9d235dd2c4f0bae79ba3fc709575135a441e205eb1b39d343c49661f2f2",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 46464,
+      "compositingIdentical": true
+    },
+    {
+      "name": "small",
+      "box": [
+        457,
+        639,
+        635,
+        711
+      ],
+      "alphaBounds": [
+        459,
+        641,
+        633,
+        709
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "85d57d79fa159c33578b5db9b192bbcfed7c722f324632ed6feaa7b59842fcbd",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 51264,
+      "compositingIdentical": true
+    },
+    {
+      "name": "medium",
+      "box": [
+        456,
+        635,
+        636,
+        715
+      ],
+      "alphaBounds": [
+        458,
+        637,
+        634,
+        713
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "ae68ada7ab40445e30810d4a6717c096eb1c29386afa6cf7b1ac4419d6c07b40",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 57600,
+      "compositingIdentical": true
+    },
+    {
+      "name": "round",
+      "box": [
+        472,
+        635,
+        620,
+        715
+      ],
+      "alphaBounds": [
+        474,
+        637,
+        618,
+        713
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "91693b3cdef15d45ca9414a5ddd149988b112ff3679bee587a5bf48279e2eb6b",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 47360,
+      "compositingIdentical": true
+    },
+    {
+      "name": "teeth",
+      "box": [
+        456,
+        637,
+        636,
+        713
+      ],
+      "alphaBounds": [
+        458,
+        639,
+        634,
+        711
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "a679c83321dba47fd5162edd6a6b1a435deeb287e714e3f4879e2a729e57b74e",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 54720,
+      "compositingIdentical": true
+    },
+    {
+      "name": "smile",
+      "box": [
+        456,
+        640,
+        636,
+        710
+      ],
+      "alphaBounds": [
+        458,
+        642,
+        634,
+        708
+      ],
+      "center": [
+        546.0,
+        675.0
+      ],
+      "sourceSha256": "628fb19a8f0e7ed6dfe107445967206f2899a2eaa712bd7cd84b12015ae4d1f0",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 50400,
+      "compositingIdentical": true
+    },
+    {
+      "name": "foundation",
+      "box": [
+        369,
+        546,
+        727,
+        816
+      ],
+      "alphaBounds": [
+        371,
+        548,
+        725,
+        814
+      ],
+      "center": [
+        548.0,
+        681.0
+      ],
+      "sourceSha256": "d01a2becf097376f1521f5330bccbf85b5bef60d0ccd1d9fee6fbf678bfb887f",
+      "sourceRgbaBytes": 6290112,
+      "runtimeRgbaBytes": 386640,
+      "compositingIdentical": true
+    }
+  ],
+  "fullCanvasRgbaBytes": 44030784,
+  "croppedRgbaBytes": 694448,
+  "note": "RGBA byte estimates describe decoded mouth textures only, not total process/GPU memory."
+}

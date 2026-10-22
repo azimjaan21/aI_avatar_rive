@@ -13,14 +13,14 @@ The demo runs locally without a backend, API key or paid avatar service. Rive ar
 - **Solo Korean female narration:** a 12.12-second local recording with Play/Pause, seeking, restart and replay. [Source and attribution](docs/AUDIO_SOURCE.md).
 - **Streaming simulation:** bounded PCM buffering, sample-clock animation and interruption handling.
 - **Expression controls:** Smile, Happy, Encouraging and Soft laugh in the collapsed Behavior lab.
-- **Audio-driven mouth movement:** RMS analysis, smoothing, silence detection and 45 ms pose transitions.
+- **Audio-driven mouth movement:** a conservative DSP mode, RMS fallback, silence closure and exclusive photographic mouth poses.
 - **Six mouth poses:** Small, Medium, Round, Teeth, Closed press and Smile, with manual preview buttons.
 - **Subtle motion:** neck-pivot sway, ±2 px breathing, 1.002–1.004 breathing scale and Open → Half → Open partial blinking. The current artwork uses a smaller shared sway to keep the shoulders aligned.
 - **Independent eye inspection:** Auto, Open and Half controls work alongside audio and mouth animation.
 - **Transparent Teacher:** layered PNG artwork over a classroom or plain background.
 - **Reusable controller:** configurable Rive asset, artboard, audio, timeline and mouth property.
 
-**Current behavior:** Closed press is the default during silence, pause and audio completion. RMS Auto uses Closed press, Small and Medium. Verified phoneme events can select Round and Teeth; the current recording has no phone alignment. Rest, Wide and Closed eyes are disabled and excluded from the compiled Rive asset.
+**Current behavior:** Closed press is the default during silence, pause and audio completion. RMS Auto uses Closed press, Small and Medium. Trustworthy viseme events can select Round; Teeth is a manual spread/smile asset, and E/I uses restrained Small; the current recording has no phone alignment. Rest, Wide and Closed eyes are disabled and excluded from the compiled Rive asset.
 
 ## Demo
 
@@ -94,13 +94,15 @@ For a Windows plugin symlink error, see [Windows setup](docs/DEVELOPMENT.md#wind
 
 [Validation record](docs/VALIDATION.md): playback evidence and visual limitations.
 
+[Mouth quality comparison](docs/LIPSYNC_QUALITY.md): current A/B results, memory, DSP limitations and the shared PCM engine.
+
 [Adaptive avatar report](docs/ADAPTIVE_AVATAR.md): streaming APIs, expressions, reusable profiles, tests and current limitations.
 
 [Motion guide](docs/MOTION.md): idle/talking ranges, breathing compensation and the shoulder-seam fallback.
 
 ## Scope and limitations
 
-Mouth motion follows audio energy; it does **not** identify Korean phonemes. Medium is used for both medium and high energy. Round and Teeth require manual selection or verified phoneme events. Smile is also available through the expression controller; automatic laughter recognition is not implemented. Closed eyes are currently disabled, so Auto provides partial blinking.
+Mouth motion follows audio energy; it does **not** identify Korean phonemes. Medium is used for both medium and high energy. Round is manual or timing-driven; Teeth is a manual spread/smile option. Smile is also available through the expression controller; automatic laughter recognition is not implemented. Closed eyes are currently disabled, so Auto provides partial blinking.
 
 This is a 2D avatar: lip contours and the shared skin patch can look less natural at high magnification, and head movement may reveal a slight shoulder seam. Windows is the tested and packaged platform.
 

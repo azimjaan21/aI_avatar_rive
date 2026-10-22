@@ -2,6 +2,7 @@
 /dist/
 /staging/
 /backups/
+/player/assets/teacher_baseline.riv
 
 # Generated builds and caches; bundled player/assets remain versioned
 **/build/
@@ -36,6 +37,10 @@ venv/
 !/gettopik-teacher/validation/adaptive/*-report.json
 !/gettopik-teacher/validation/adaptive/stream-speaker-output.json
 !/gettopik-teacher/validation/adaptive/web-speaker-output.json
+!/gettopik-teacher/validation/lipsync-quality/
+/gettopik-teacher/validation/lipsync-quality/*
+!/gettopik-teacher/validation/lipsync-quality/*-report.json
+!/gettopik-teacher/validation/lipsync-quality/asset-audit.json
 
 # Local settings, credentials and editor files
 .env

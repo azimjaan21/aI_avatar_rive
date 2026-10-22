@@ -35,6 +35,8 @@ The helper creates local directory junctions for Windows plugins; it does not ch
 
 ## Rebuild the avatar
 
+After editing source mouth PNGs, run `python gettopik-teacher/tools/audit_mouth_rig.py`, `python gettopik-teacher/tools/build_scene.py` and `python gettopik-teacher/tools/bake_timeline.py` before compiling. This regenerates lossless runtime crops and keeps the RML consistent.
+
 Run these commands from the repository root with `rive` on `PATH`. On the original Windows installation the executable is also available at `$env:USERPROFILE\.rive\bin\rive.exe`.
 
 ```powershell
@@ -88,7 +90,7 @@ The current recording is a 12.12-second Korean female solo narration; see [sourc
 4. Hold non-silence pose changes for at least four frames.
 5. Map silence to Closed press, lower energy to Small, and medium/high energy to Medium.
 6. Sample the timeline using native audio position and update the Rive `mouthIndex` property.
-7. Crossfade mouth states over 45 ms while eye and idle layers run independently.
+7. The current runtime selects one photographic mouth through Rive Solo; eye and idle layers run independently. See [current mouth quality](LIPSYNC_QUALITY.md) for the DSP policy and A/B comparison.
 
 Head motion uses a separate `motionTalking` property with a 700 ms quiet hold and eased state transitions. Breathing runs independently on a 31-second timeline. See the [motion guide](MOTION.md) for viewport compensation and the current shoulder-seam fallback.
 

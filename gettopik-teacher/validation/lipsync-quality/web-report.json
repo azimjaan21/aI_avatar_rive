@@ -1,0 +1,12 @@
+{
+  "result": "passed",
+  "scope": "Chrome debug Web; real speaker loopback; no hardware lip-sync latency measurement",
+  "streaming": true,
+  "speakingWithSmile": true,
+  "pauseClockFrozen": true,
+  "resume": true,
+  "interruptResets": true,
+  "speakerOutputDetected": true,
+  "runtimeExceptions": [],
+  "streamUi": "GETTOPIK\nSPEAKING STUDIO\nToggle classroom\nLISTEN & PRACTICE\n한국어로 이야기해요.\nYour Korean speaking teacher\nTODAY’S AUDIO\nkorean_female_narration.wav\n0:03\n0:12\nPause\nRestart\nSpeaking\nEye poses\nMouth poses\nPreview each expression, or follow the lesson audio.\nBehavior lab speaking · Local PCM stream\nAudio mode\nAudio-reactive fallback — no verified timings\nMouth timing\nExpression\nConversation state\nInterrupt\nStop / reset\nBuffered 216 ms · Start 205 ms\nGETTOPIK / Korean, one conversation at a time."
+}

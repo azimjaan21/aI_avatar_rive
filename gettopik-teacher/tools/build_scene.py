@@ -2,6 +2,7 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import math
+import json
 from eye_pose_rig import configure_eyes
 from head_motion_rig import configure_motion
 from expression_rig import configure_expressions
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MOUTHS = ['rest', 'small', 'medium', 'wide', 'round', 'teeth', 'closed_press', 'smile']
 
 def build():
+    crops = {p['name']: p['box'] for p in json.loads((ROOT/'assets/ai_speaking/characters/teacher/mouth/runtime/manifest.json').read_text(encoding='utf-8'))['poses']}
     r = ET.Element('Rive', version='1', kind='fragment')
     a = ET.SubElement(r, 'Artboard', width='1086', height='1448', name='Teacher', id='0:2', defaultStateMachineId='0:7', styleId='0:5', viewModelId='0:40', viewModelInstanceId='0:41', isComponent='true')
     ET.SubElement(a, 'LayoutComponentStyle', name='Teacher Style', id='0:5')
@@ -30,7 +32,7 @@ def build():
         state = ET.SubElement(mouths, 'AnimationState', animationId=f'0:{400+i}', id=f'0:{300+i}', x=str(round(300*math.cos(i*math.pi/4))), y=str(round(300*math.sin(i*math.pi/4))), reset='true')
         for j in range(8):
             if i == j or j in (0,3): continue
-            t = ET.SubElement(state, 'StateTransition', stateToId=f'0:{300+j}', duration='45', enableEarlyExit='true')
+            t = ET.SubElement(state, 'StateTransition', stateToId=f'0:{300+j}', duration='0', enableEarlyExit='true')
             c = ET.SubElement(t, 'TransitionViewModelCondition', opValue='equal')
             prop = ET.SubElement(c, 'TransitionPropertyViewModelComparator')
             b = ET.SubElement(prop, 'BindablePropertyNumber')
@@ -42,9 +44,15 @@ def build():
         attrs = dict(name=name, assetId=f'0:{aid}', id=f'0:{iid}', x=str(x), y=str(y), originX='0', originY='0')
         if opacity is not None: attrs['opacity'] = str(opacity)
         return ET.SubElement(parent, 'Image', **attrs)
+    # One fully opaque pose at a time: opacity blending of photographic lips
+    # exposes the skin patch and draws two incompatible contours simultaneously.
+    solo = ET.SubElement(head, 'Solo', name='MouthPoses', id='0:224', activeComponentId='0:206')
     for i, name in enumerate(MOUTHS):
-        if i not in (0,3): image(head, f'Mouth_{name}', 100+i, 200+i, -544, -870, 1 if i == 6 else 0)
-    image(head, 'MouthFoundation', 123, 222, -544, -870)
+        if i not in (0,3):
+            x0,y0,_,_ = crops[name]
+            image(solo, f'Mouth_{name}', 100+i, 200+i, x0-544, y0-870)
+    x0,y0,_,_ = crops['foundation']
+    image(head, 'MouthFoundation', 123, 222, x0-544, y0-870)
     for i, name in enumerate(['open','half']): image(head, f'Eyes_{name}', 110+i, 210+i, -544, -870, 1 if i == 0 else 0)
     image(head, 'Head', 120, 220, -544, -870)
     image(rig, 'Body', 121, 221, -543, -1448)
@@ -66,8 +74,9 @@ def build():
     for i,name in enumerate(MOUTHS):
         if i in (0,3): continue
         anim=ET.SubElement(a,'LinearAnimation',name=f'Mouth_{name}',id=f'0:{400+i}',duration='60',loopValue='loop')
-        for j in range(8):
-            if j not in (0,3): keys(anim,200+j,18,[(0,1 if i==j else 0)])
+        obj = ET.SubElement(anim,'KeyedObject',objectId='0:224')
+        prop = ET.SubElement(obj,'KeyedProperty',propertyKey='296')
+        ET.SubElement(prop,'KeyFrameId',frame='0',value=f'0:{200+i}',interpolationType='hold')
     vm=ET.SubElement(r,'ViewModel',name='AvatarController',id='0:40',defaultInstanceId='0:41')
     ET.SubElement(vm,'ViewModelPropertyNumber',name='mouthIndex',id='0:42')
     instance=ET.SubElement(vm,'ViewModelInstance',name='Default',id='0:41',exports='true')
@@ -88,8 +97,8 @@ def build():
     ET.SubElement(r,'ImageAsset',file='assets/ai_speaking/backgrounds/classroom_bg.png',name='classroom',id='0:122')
     base = 'assets/ai_speaking/characters/teacher/'
     for i, name in enumerate(MOUTHS):
-        if i not in (0,3): ET.SubElement(r, 'ImageAsset', file=f'{base}mouth/mouth_{name}.png', name=f'mouth_{name}', id=f'0:{100+i}')
-    ET.SubElement(r, 'ImageAsset', file=f'{base}mouth/mouth_foundation.png', name='mouth_foundation', id='0:123')
+        if i not in (0,3): ET.SubElement(r, 'ImageAsset', file=f'{base}mouth/runtime/mouth_{name}.png', name=f'mouth_{name}', id=f'0:{100+i}')
+    ET.SubElement(r, 'ImageAsset', file=f'{base}mouth/runtime/mouth_foundation.png', name='mouth_foundation', id='0:123')
     for i, name in enumerate(['open','half']): ET.SubElement(r, 'ImageAsset', file=f'{base}eyes/eyes_{name}.png', name=f'eyes_{name}', id=f'0:{110+i}')
     for i, name in enumerate(['head','body']): ET.SubElement(r, 'ImageAsset', file=f'{base}{name}.png', name=name, id=f'0:{120+i}')
     configure_eyes(r)

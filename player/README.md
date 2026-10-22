@@ -59,3 +59,5 @@ flutter test integration_test/playback_test.dart -d windows --reporter expanded
 The integration test uses a visible Windows session and an available speaker output for loopback verification. Its pause assertion at 8.15 seconds is specific to the bundled lesson.
 
 See [development](../docs/DEVELOPMENT.md), [asset conventions](../docs/ASSETS.md) and [validation](../docs/VALIDATION.md) for the complete workflow.
+
+The current player uses one SoLoud PCM engine for local WAV, simulated arrival and external chunks. See [mouth quality and measured performance](../docs/LIPSYNC_QUALITY.md). The old JSON mouth timeline is retained for metadata and CLI authoring; live mouth choices are computed causally.

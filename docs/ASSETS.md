@@ -84,3 +84,7 @@ Eye selection is independent of mouth control and audio playback. Closed is abse
 5. Inspect each affected pose in the player, then test Auto with real audio.
 
 `tools/build_scene.py` recreates the rig and overwrites `scene.rml`; it is not needed for ordinary asset replacement. `tools/prepare_mouth_v2.py` is the historical normalization helper: it requires the original v2 ZIP extracted under the ignored `staging/gettopik_teacher_mouth_assets_v2/` path. Its output is already included; do not rerun it merely to start the demo. Additional preprocessing dependencies are in `requirements-mouth-v2.txt`.
+
+## Runtime mouth textures
+
+The original full-canvas mouth PNGs are retained. `mouth/runtime/` contains lossless tight crops and a manifest with their original canvas bounds. RML positions those crops at the same face coordinates. A Rive Solo selects exactly one pose; photographic opacity crossfades are removed. Regenerate with `tools/audit_mouth_rig.py`, then rebuild the scene and baked timeline. Eye files and their RML paths are unchanged. See [quality comparison](LIPSYNC_QUALITY.md).

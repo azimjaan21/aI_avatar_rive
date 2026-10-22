@@ -78,37 +78,41 @@ void main() {
     expect(track.at(.4), isNull);
   });
 
-  test('Verified events choose Round/Teeth; silence overrides everything', () {
-    final lips = LipSyncEngine(CharacterProfile.teacher)
-      ..alignment = VisemeTrack([
-        const VisemeEvent(0, .15, Viseme.o),
-        const VisemeEvent(.15, .3, Viseme.ei),
-        const VisemeEvent(.3, .4, Viseme.mbp),
-      ]);
-    expect(
-      lips.resolve(.1, const EnergyFrame(.1, .1, .8, false), playing: true),
-      4,
-    );
-    expect(
-      lips.resolve(.2, const EnergyFrame(.2, .1, .8, false), playing: true),
-      5,
-    );
-    expect(
-      lips.resolve(.31, const EnergyFrame(.31, .1, .8, false), playing: true),
-      6,
-    );
-    expect(
-      lips.resolve(.12, const EnergyFrame(.12, 0, 0, true), playing: true),
-      6,
-    );
-    expect(
-      lips.resolve(.1, const EnergyFrame(.1, .1, .8, false), playing: false),
-      6,
-    );
-  });
+  test(
+    'Verified events choose safe Round/Small; silence overrides everything',
+    () {
+      final lips = LipSyncEngine(CharacterProfile.teacher)
+        ..alignment = VisemeTrack([
+          const VisemeEvent(0, .15, Viseme.o),
+          const VisemeEvent(.15, .3, Viseme.ei),
+          const VisemeEvent(.3, .4, Viseme.mbp),
+        ]);
+      expect(
+        lips.resolve(.1, const EnergyFrame(.1, .1, .8, false), playing: true),
+        4,
+      );
+      expect(
+        lips.resolve(.2, const EnergyFrame(.2, .1, .8, false), playing: true),
+        1,
+      );
+      expect(
+        lips.resolve(.31, const EnergyFrame(.31, .1, .8, false), playing: true),
+        6,
+      );
+      expect(
+        lips.resolve(.12, const EnergyFrame(.12, 0, 0, true), playing: true),
+        6,
+      );
+      expect(
+        lips.resolve(.1, const EnergyFrame(.1, .1, .8, false), playing: false),
+        6,
+      );
+    },
+  );
 
   test('Fallback hysteresis and dwell resist rapid mouth flicker', () {
-    final lips = LipSyncEngine(CharacterProfile.teacher);
+    final lips = LipSyncEngine(CharacterProfile.teacher)
+      ..style = LipSyncStyle.rms;
     expect(
       lips.resolve(0, const EnergyFrame(0, .1, .5, false), playing: true),
       2,
@@ -161,5 +165,86 @@ void main() {
     expect(wav.sampleRate, 24000);
     expect(wav.duration, closeTo(12.12, .00001));
     expect(() => PcmWav.parse(Uint8List(3)), throwsFormatException);
+  });
+
+  test('DSP bands distinguish noise-like energy without naming phonemes', () {
+    List<EnergyFrame> tone(double hz) {
+      final pcm = Uint8List(24000);
+      final data = ByteData.sublistView(pcm);
+      for (var i = 0; i < 12000; i++) {
+        data.setInt16(
+          i * 2,
+          (math.sin(2 * math.pi * hz * i / 24000) * 8000).round(),
+          Endian.little,
+        );
+      }
+      return PcmAnalyzer().add(pcm);
+    }
+
+    expect(tone(350).last.lowBandRatio, greaterThan(.7));
+    expect(tone(6500).last.noiseLike, isTrue);
+    expect(tone(350).last.noiseLike, isFalse);
+    expect(CharacterProfile.teacher.visemes[Viseme.ei], 1);
+    expect(CharacterProfile.teacher.shapes[MouthShape.spread], 5);
+  });
+
+  test(
+    'Lightweight onset opens narrowly; timed events bypass heuristic dwell',
+    () {
+      final lips = LipSyncEngine(CharacterProfile.teacher);
+      expect(
+        lips.resolve(1, const EnergyFrame(1, .1, .8, false), playing: true),
+        1,
+      );
+      expect(
+        lips.resolve(
+          1.05,
+          const EnergyFrame(1.05, .1, .8, false),
+          playing: true,
+        ),
+        1,
+      );
+      expect(
+        lips.resolve(
+          1.12,
+          const EnergyFrame(1.12, .1, .8, false),
+          playing: true,
+        ),
+        2,
+      );
+      expect(
+        lips.resolve(
+          1.13,
+          const EnergyFrame(1.13, .1, .8, false),
+          playing: true,
+          eventOverride: const VisemeEvent(1.13, 1.2, Viseme.o),
+        ),
+        4,
+      );
+      expect(
+        lips.resolve(1.14, const EnergyFrame(1.14, 0, 0, true), playing: true),
+        6,
+      );
+    },
+  );
+
+  test('Spectral and RMS analysis do not depend on chunk boundaries', () {
+    final wav = PcmWav.parse(File('assets/korean_demo.wav').readAsBytesSync());
+    final whole = PcmAnalyzer().add(wav.pcm);
+    final analyzer = PcmAnalyzer(), split = <EnergyFrame>[];
+    for (var i = 0; i < wav.pcm.length; i += 997) {
+      split.addAll(
+        analyzer.add(
+          Uint8List.sublistView(wav.pcm, i, math.min(i + 997, wav.pcm.length)),
+        ),
+      );
+    }
+    expect(split.length, whole.length);
+    for (var i = 0; i < whole.length; i++) {
+      expect(split[i].energy, whole[i].energy);
+      expect(split[i].lowBandRatio, whole[i].lowBandRatio);
+      expect(split[i].highBandRatio, whole[i].highBandRatio);
+      expect(split[i].zeroCrossingRate, whole[i].zeroCrossingRate);
+    }
   });
 }

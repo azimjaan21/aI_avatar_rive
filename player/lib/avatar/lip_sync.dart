@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'character_profile.dart';
 
+enum LipSyncStyle { rms, lightweight }
+
 /// Explicit phone mapping, never inferred from RMS. Compound vowels need
 /// phone-level intervals from the aligner; text is not divided into fake times.
 Viseme? koreanPhoneViseme(String phone) {
@@ -118,14 +120,29 @@ class VisemeTrack {
 }
 
 class EnergyFrame {
-  const EnergyFrame(this.time, this.rms, this.energy, this.silence);
+  const EnergyFrame(
+    this.time,
+    this.rms,
+    this.energy,
+    this.silence, {
+    this.lowBandRatio = 0,
+    this.highBandRatio = 0,
+    this.zeroCrossingRate = 0,
+  });
   final double time, rms, energy;
   final bool silence;
+  // Coarse DSP evidence, NOT phonemes, vowels or learned viseme probabilities.
+  final double lowBandRatio, highBandRatio, zeroCrossingRate;
+  bool get noiseLike => highBandRatio > .40 && zeroCrossingRate > .18;
 }
 
 /// Stateful 20 ms trailing RMS / 10 ms hop. Chunk boundaries may split samples.
 class PcmAnalyzer {
-  PcmAnalyzer({this.sampleRate = 24000, this.referenceRms = 0}) {
+  PcmAnalyzer({
+    this.sampleRate = 24000,
+    this.referenceRms = 0,
+    this.spectralFeatures = true,
+  }) {
     if (sampleRate < 8000 ||
         sampleRate > 96000 ||
         !referenceRms.isFinite ||
@@ -135,6 +152,13 @@ class PcmAnalyzer {
   }
   final int sampleRate;
   final double referenceRms;
+  final bool spectralFeatures;
+  late final double _lowGain = 1 - math.exp(-2 * math.pi * 700 / sampleRate);
+  late final double _upperGain = 1 - math.exp(-2 * math.pi * 2500 / sampleRate);
+  double _low = 0, _upper = 0, _last = 0;
+  double _lowSum = 0, _highSum = 0, _midSum = 0;
+  double _previousLow = 0, _previousHigh = 0, _previousMid = 0;
+  int _crossings = 0, _previousCrossings = 0;
   int _lowByte = -1, _count = 0, _samples = 0, _quiet = 0;
   double _sum = 0, _previous = 0, _envelope = 0, _noise = .001;
   double _peak = .04;
@@ -151,6 +175,16 @@ class PcmAnalyzer {
       _lowByte = -1;
       if (value >= 32768) value -= 65536;
       final sample = value / 32768;
+      if (spectralFeatures) {
+        _low += _lowGain * (sample - _low);
+        _upper += _upperGain * (sample - _upper);
+        final mid = _upper - _low, high = sample - _upper;
+        _lowSum += _low * _low;
+        _midSum += mid * mid;
+        _highSum += high * high;
+        if ((_last < 0) != (sample < 0)) _crossings++;
+        _last = sample;
+      }
       _sum += sample * sample;
       _count++;
       _samples++;
@@ -169,6 +203,28 @@ class PcmAnalyzer {
       if (rms < .008) _noise += .02 * (rms - _noise);
       final quiet = rms < math.max(.0032, _noise * 2.5);
       _quiet = quiet ? _quiet + 1 : 0;
+      final bandTotal =
+          _lowSum +
+          _midSum +
+          _highSum +
+          _previousLow +
+          _previousMid +
+          _previousHigh;
+      final lowRatio = bandTotal > 1e-12
+          ? (_lowSum + _previousLow) / bandTotal
+          : 0.0;
+      final highRatio = bandTotal > 1e-12
+          ? (_highSum + _previousHigh) / bandTotal
+          : 0.0;
+      final zcr = (_crossings + _previousCrossings) / (sampleRate / 50);
+      _previousLow = _lowSum;
+      _previousHigh = _highSum;
+      _previousMid = _midSum;
+      _previousCrossings = _crossings;
+      _lowSum = 0;
+      _midSum = 0;
+      _highSum = 0;
+      _crossings = 0;
       frames.add(
         EnergyFrame(
           _samples / sampleRate,
@@ -176,6 +232,9 @@ class PcmAnalyzer {
           (_envelope / (referenceRms > 0 ? referenceRms : math.max(.02, _peak)))
               .clamp(0.0, 1.0),
           _quiet >= 2 || (quiet && _samples <= sampleRate ~/ 50),
+          lowBandRatio: lowRatio,
+          highBandRatio: highRatio,
+          zeroCrossingRate: zcr,
         ),
       );
     }
@@ -187,6 +246,7 @@ class LipSyncEngine {
   LipSyncEngine(this.profile) : _pose = profile.neutral;
   final CharacterProfile profile;
   VisemeTrack? alignment;
+  LipSyncStyle style = LipSyncStyle.lightweight;
   int _pose;
   double _changed = -1, _lastTime = -1;
 
@@ -208,14 +268,29 @@ class LipSyncEngine {
     final event = eventOverride ?? (useAlignment ? alignment?.at(time) : null);
     final int desired;
     if (event != null) {
-      desired = profile.visemes[event.viseme] ?? profile.neutral;
+      // Trustworthy timings must not be delayed by heuristic pose dwell.
+      _pose = profile.visemes[event.viseme] ?? profile.neutral;
+      _changed = time;
+      return _pose;
     } else {
-      final threshold = _pose == profile.medium ? .24 : .34;
-      desired = frame.energy < threshold ? profile.small : profile.medium;
+      final improved = style == LipSyncStyle.lightweight;
+      final threshold = _pose == profile.medium
+          ? (improved ? .30 : .24)
+          : (improved ? .43 : .34);
+      desired = frame.energy < threshold || (improved && frame.noiseLike)
+          ? profile.small
+          : profile.medium;
+      if (improved && _pose == profile.neutral) {
+        // Audible onset gets a narrow opening immediately. Do not jump from
+        // a closed photographic mouth straight to the largest allowed image.
+        _pose = profile.small;
+        _changed = time;
+        return _pose;
+      }
     }
     // A real aligned bilabial closure should not wait for the vowel hold.
     if (desired != _pose &&
-        (event?.viseme == Viseme.mbp || time - _changed >= .075)) {
+        time - _changed >= (style == LipSyncStyle.lightweight ? .100 : .075)) {
       _pose = desired;
       _changed = time;
     }

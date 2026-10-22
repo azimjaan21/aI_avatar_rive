@@ -21,7 +21,7 @@ class AvatarBehaviorLab extends StatelessWidget {
       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
     ),
     subtitle: Text(
-      '${avatar.conversation.name} · ${avatar.mode == AvatarAudioMode.offline ? 'Offline timeline' : 'Local PCM stream'}',
+      '${avatar.conversation.name} · ${avatar.mode == AvatarAudioMode.offline ? 'Local WAV' : 'Local PCM stream'}',
       style: const TextStyle(fontSize: 12),
     ),
     childrenPadding: const EdgeInsets.only(bottom: 12),
@@ -41,7 +41,7 @@ class AvatarBehaviorLab extends StatelessWidget {
               key: Key('mode-${mode.name}'),
               label: Text(
                 mode == AvatarAudioMode.offline
-                    ? 'Offline timeline'
+                    ? 'Local WAV'
                     : 'Local streaming simulation',
               ),
               selected: avatar.mode == mode,
@@ -55,6 +55,26 @@ class AvatarBehaviorLab extends StatelessWidget {
       Text(
         avatar.alignmentStatus,
         style: const TextStyle(color: Colors.white54, fontSize: 12),
+      ),
+      const SizedBox(height: 12),
+      const Text('Mouth timing'),
+      Wrap(
+        spacing: 7,
+        children: [
+          for (final style in LipSyncStyle.values)
+            ChoiceChip(
+              key: Key('lip-style-${style.name}'),
+              label: Text(
+                style == LipSyncStyle.rms
+                    ? 'A · RMS baseline'
+                    : 'B · Lightweight DSP',
+              ),
+              selected: avatar.lipSyncStyle == style,
+              onSelected: avatar.ready
+                  ? (_) => avatar.setLipSyncStyle(style)
+                  : null,
+            ),
+        ],
       ),
       const SizedBox(height: 16),
       const Text('Expression'),

@@ -1,0 +1,257 @@
+{
+  "comparison": {
+    "A": {
+      "result": "passed",
+      "case": "A",
+      "platform": "Windows Flutter integration debug",
+      "rig": "Original full-canvas PNGs and 45ms opacity fades",
+      "estimator": "rms",
+      "audioClock": {
+        "firstChunkToPlaybackCursorMs": 141.536,
+        "maxQueuedMs": 226.66700000000083,
+        "maxAllowedQueuedMs": 480.0,
+        "analysisFramesRetained": 18,
+        "visemeEventsRetained": 0,
+        "maxAnalysisFrameLagMs": 9.334000000000842,
+        "receivedSeconds": 10.28,
+        "consumedSeconds": 10.112,
+        "underruns": 0,
+        "clockPollMs": 20,
+        "clock": "SoLoud released-stream consumed sample cursor",
+        "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+      },
+      "wallSampleMs": 10286.316,
+      "processCpuMs": 4671.875,
+      "cpuPercentOfOneCore": 45.418349970971136,
+      "workingSetBefore": 404086784,
+      "workingSetAfter": 399855616,
+      "peakSampledRssBytes": 431013888,
+      "privateBytesAfter": 543150080,
+      "buildP95Ms": 19.111,
+      "rasterP95Ms": 1.665,
+      "frameSamples": 257,
+      "avatarDisplaySize": [
+        715.2,
+        726.0
+      ],
+      "mouthWidthDisplayPixels": 88.24309392265192,
+      "scope": "No capture during CPU sample. Debug desktop measurements, not mobile, release or acoustic latency.",
+      "visualSpeechFrames": [
+        {
+          "file": "A-speech-0.png",
+          "time": 2.602667,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "A-speech-1.png",
+          "time": 3.52,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "A-speech-2.png",
+          "time": 4.437333,
+          "mouth": 6,
+          "silence": false
+        },
+        {
+          "file": "A-speech-3.png",
+          "time": 5.376,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "A-speech-4.png",
+          "time": 6.314667,
+          "mouth": 6,
+          "silence": false
+        },
+        {
+          "file": "A-speech-5.png",
+          "time": 7.253334,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "A-speech-6.png",
+          "time": 8.170667,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "A-speech-7.png",
+          "time": 9.130667,
+          "mouth": 1,
+          "silence": false
+        }
+      ],
+      "visualCaptureTimingNote": "Controller times precede external capture. PNGs are appearance evidence, not acoustic latency measurements."
+    },
+    "B": {
+      "result": "passed",
+      "case": "B",
+      "platform": "Windows Flutter integration debug",
+      "rig": "Lossless cropped PNGs and exclusive Solo selection",
+      "estimator": "lightweight",
+      "audioClock": {
+        "firstChunkToPlaybackCursorMs": 137.868,
+        "maxQueuedMs": 224.0000000000002,
+        "maxAllowedQueuedMs": 480.0,
+        "analysisFramesRetained": 20,
+        "visemeEventsRetained": 0,
+        "maxAnalysisFrameLagMs": 9.334000000000842,
+        "receivedSeconds": 10.32,
+        "consumedSeconds": 10.133333,
+        "underruns": 0,
+        "clockPollMs": 20,
+        "clock": "SoLoud released-stream consumed sample cursor",
+        "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+      },
+      "wallSampleMs": 10300.424,
+      "processCpuMs": 4718.75,
+      "cpuPercentOfOneCore": 45.81122097498122,
+      "workingSetBefore": 364007424,
+      "workingSetAfter": 357822464,
+      "peakSampledRssBytes": 395706368,
+      "privateBytesAfter": 439390208,
+      "buildP95Ms": 18.745,
+      "rasterP95Ms": 1.694,
+      "frameSamples": 258,
+      "avatarDisplaySize": [
+        715.2,
+        726.0
+      ],
+      "mouthWidthDisplayPixels": 88.24309392265192,
+      "scope": "No capture during CPU sample. Debug desktop measurements, not mobile, release or acoustic latency.",
+      "visualSpeechFrames": [
+        {
+          "file": "B-speech-0.png",
+          "time": 2.624,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "B-speech-1.png",
+          "time": 3.52,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "B-speech-2.png",
+          "time": 4.458667,
+          "mouth": 1,
+          "silence": false
+        },
+        {
+          "file": "B-speech-3.png",
+          "time": 5.376,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "B-speech-4.png",
+          "time": 6.293334,
+          "mouth": 1,
+          "silence": false
+        },
+        {
+          "file": "B-speech-5.png",
+          "time": 7.232,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "B-speech-6.png",
+          "time": 8.149333,
+          "mouth": 2,
+          "silence": false
+        },
+        {
+          "file": "B-speech-7.png",
+          "time": 9.109333,
+          "mouth": 1,
+          "silence": false
+        }
+      ],
+      "visualCaptureTimingNote": "Controller times precede external capture. PNGs are appearance evidence, not acoustic latency measurements."
+    }
+  },
+  "analysis": {
+    "rms": {
+      "repetitions": 50,
+      "analyzedAudioSeconds": 606.0,
+      "analysisWallMs": 148.081,
+      "analysisMsPerAudioSecond": 0.24435808580858084,
+      "chunk40msP50Us": 9,
+      "chunk40msP95Us": 15,
+      "processRssBytes": 190566400,
+      "poseChanges": 43,
+      "entriesToMedium": 18,
+      "speechFrames": 656,
+      "noiseLikeFrames": 0,
+      "onsetToFirstOpeningP50Ms": 70.00000000000028,
+      "onsetToFirstOpeningMaxMs": 70.00000000000028,
+      "silenceViolations": 0,
+      "closedToMediumJumps": 16
+    },
+    "lightweight": {
+      "repetitions": 50,
+      "analyzedAudioSeconds": 606.0,
+      "analysisWallMs": 1300.379,
+      "analysisMsPerAudioSecond": 2.145839933993399,
+      "chunk40msP50Us": 71,
+      "chunk40msP95Us": 167,
+      "processRssBytes": 195186688,
+      "poseChanges": 63,
+      "entriesToMedium": 15,
+      "speechFrames": 656,
+      "noiseLikeFrames": 61,
+      "onsetToFirstOpeningP50Ms": 0.0,
+      "onsetToFirstOpeningMaxMs": 0.0,
+      "silenceViolations": 0,
+      "closedToMediumJumps": 0
+    }
+  },
+  "C": {
+    "status": "unavailable",
+    "reason": "No verified Korean phoneme timings; no invented C score"
+  },
+  "decision": "Keep B: exclusive photographic poses, narrow onset, conservative DSP. No phoneme recognition claimed.",
+  "meshProbe": {
+    "vertices": 10,
+    "triangles": 10,
+    "displacementsSourcePixels": [
+      0,
+      1.5,
+      4.5
+    ],
+    "shipped": false,
+    "reason": "Interior compression flattens lip highlights/teeth. It does not supply topology for closed/rounded shapes."
+  },
+  "mobileTested": false,
+  "web": {
+    "result": "passed",
+    "scope": "Chrome debug Web; real speaker loopback; no hardware lip-sync latency measurement",
+    "streaming": true,
+    "speakingWithSmile": true,
+    "pauseClockFrozen": true,
+    "resume": true,
+    "interruptResets": true,
+    "speakerOutputDetected": true,
+    "runtimeExceptions": [],
+    "streamUi": "GETTOPIK\nSPEAKING STUDIO\nToggle classroom\nLISTEN & PRACTICE\n\ud55c\uad6d\uc5b4\ub85c \uc774\uc57c\uae30\ud574\uc694.\nYour Korean speaking teacher\nTODAY\u2019S AUDIO\nkorean_female_narration.wav\n0:03\n0:12\nPause\nRestart\nSpeaking\nEye poses\nMouth poses\nPreview each expression, or follow the lesson audio.\nBehavior lab speaking \u00b7 Local PCM stream\nAudio mode\nAudio-reactive fallback \u2014 no verified timings\nMouth timing\nExpression\nConversation state\nInterrupt\nStop / reset\nBuffered 216 ms \u00b7 Start 205 ms\nGETTOPIK / Korean, one conversation at a time."
+  },
+  "tests": {
+    "engine": "10 passed",
+    "nativeOffline": "passed",
+    "nativeAdaptive": "passed",
+    "nativeComparisonA": "passed",
+    "nativeComparisonB": "passed",
+    "flutterAnalyze": "no issues",
+    "windowsRelease": "built"
+  },
+  "windowsReleaseBuilt": true,
+  "productionModelsInstalled": false,
+  "packagedRivMatches": true
+}

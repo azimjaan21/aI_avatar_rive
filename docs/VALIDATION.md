@@ -1,5 +1,7 @@
 # Validation record
 
+See [current lip-sync quality validation](LIPSYNC_QUALITY.md) for the shared PCM engine, cropped rig and DSP comparison. The earlier records below remain historical evidence.
+
 The original native Windows validation below was captured after replacing Rest with Closed press. Current adaptive-controller and solo-narration validation is documented in [the implementation report](ADAPTIVE_AVATAR.md). The screenshots below are actual application captures from that run.
 
 The subsequent subtle-motion update preserves the eye, mouth and baked audio timelines. See the [motion validation](MOTION.md#validation) for the seam fallback, measured breathing offsets and its playback regression evidence.
