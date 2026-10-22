@@ -49,7 +49,7 @@ def configure_motion(root, whole_avatar_fallback=True):
         sway = ET.Element('Node', name='AvatarNeckPivot', id='0:22', x='544', y='870')
         sway.append(breath)
         teacher.insert(index, sway)
-    amplitude = next((n for n in sway.findall('Node') if n.get('id') == '0:23'), None)
+    amplitude = next((n for n in sway.iter('Node') if n.get('id') == '0:23'), None)
     if amplitude is None:
         sway.remove(breath)
         amplitude = ET.SubElement(sway, 'Node', name='BreathAmplitude', id='0:23', scaleY='.5')

@@ -1,0 +1,509 @@
+{
+  "source": "korean_female_narration.wav",
+  "duration": 12.12,
+  "samples": [
+    {
+      "time": 0.0,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.09,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.171,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.25,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.329,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.41,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.49,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.529,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.61,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.69,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.769,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.81,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.89,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 0.97,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 1.05,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 1.13,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 1.21,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 0.0
+    },
+    {
+      "time": 1.289,
+      "playing": true,
+      "mouth": 6,
+      "silence": false,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.369,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.409,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.489,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.569,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.651,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.689,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.77,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 1.849,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 2.689,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 2.729,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 2.81,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 2.85,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 2.93,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.011,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.09,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.17,
+      "playing": true,
+      "mouth": 6,
+      "silence": false,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.209,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.29,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.37,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.45,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.53,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.609,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.651,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.73,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.809,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.89,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 3.931,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.01,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.09,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.131,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.21,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.289,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.37,
+      "playing": true,
+      "mouth": 6,
+      "silence": true,
+      "riveValue": 6.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.45,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.53,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.609,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.689,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.73,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.81,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.889,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 4.969,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    },
+    {
+      "time": 5.05,
+      "playing": true,
+      "mouth": 2,
+      "silence": false,
+      "riveValue": 2.0,
+      "motionTalking": 1.0
+    }
+  ],
+  "eyePoseControls": {
+    "manualOpenHalfHoldPastBlink": true,
+    "closedTemporarilyDisabled": true,
+    "mouthSelectionIndependent": true,
+    "autoRestored": true
+  },
+  "speakerLoopbackOutputDetected": true,
+  "result": "passed",
+  "speechPoses": [
+    6,
+    2,
+    1
+  ],
+  "silenceSamples": 26,
+  "speechSamples": 34,
+  "pausedPosition": 5.11,
+  "allSixActivePoses": true,
+  "restAssetDisabled": true,
+  "silencePose": "closed_press",
+  "wideAssetDisabled": true,
+  "completionAndReplay": true,
+  "audioDrivenMotion": true,
+  "breathingDisplayAmplitude": 2
+}

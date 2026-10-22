@@ -1,0 +1,11 @@
+{
+  "sourcePngsCompared": 15,
+  "sourcePngsChanged": [],
+  "audioAndRivCopiesMatch": {
+    "teacher.riv": true,
+    "korean_demo.wav": true,
+    "mouth_timeline.json": true
+  },
+  "existingNonAudioTimelinesChanged": [],
+  "generatorRecreatesSceneExactly": true
+}

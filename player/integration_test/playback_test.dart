@@ -106,8 +106,8 @@ void main() {
       final observed = <int>{};
       var silent = 0;
       var speech = 0;
-      for (var i = 0; i < 120; i++) {
-        await tester.pump(const Duration(milliseconds: 100));
+      for (var i = 0; i < 60; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
         samples.add({
           'time': c.position,
           'playing': c.playing,
@@ -125,18 +125,20 @@ void main() {
           speech++;
         }
         expect(c.mouthProperty!.value, c.mouth.toDouble());
-        if (i < 60) expect(c.eyeProperty!.value, 0);
-        if (i == 60) c.selectEye(-1);
-        if (i == 50) await capture('player-speaking');
+        if (i < 30) expect(c.eyeProperty!.value, 0);
+        if (i == 30) c.selectEye(-1);
+        if (i == 25) await capture('player-speaking');
       }
-      expect(c.position, greaterThan(8));
+      expect(c.position, greaterThan(2));
       expect(observed.length, greaterThan(1));
       expect(observed, isNot(contains(3)));
       expect(observed, isNot(contains(0)));
-      expect(observed, containsAll([1, 2]));
+      expect(observed, contains(2));
       expect(c.frames.every((f) => f['mouth'] != 0 && f['mouth'] != 3), isTrue);
       expect(silent, greaterThan(0));
       expect(speech, greaterThan(0));
+      await tester.tap(find.byKey(const Key('play-pause')));
+      await tester.pump(const Duration(milliseconds: 250));
       expect(await loopback.exitCode.timeout(const Duration(seconds: 15)), 0);
       final audioOutput = jsonDecode(
         File(
@@ -145,8 +147,6 @@ void main() {
       );
       expect(audioOutput['outputDetected'], isTrue);
       evidence['speakerLoopbackOutputDetected'] = true;
-      await tester.tap(find.byKey(const Key('play-pause')));
-      await tester.pump(const Duration(milliseconds: 250));
       expect(c.playing, isFalse);
       expect(c.motionProperty!.value, 0);
       expect(c.mouth, 6);
@@ -154,19 +154,25 @@ void main() {
       await advanceFor(700);
       expect((c.position - paused).abs(), lessThan(.12));
       await capture('player-paused');
-      // The original MP3 has a measured pause from 8.05 to 8.57 s.
-      await c.seek(8.15);
+      // Measured pause in the bundled solo narration (not the old dialogue).
+      await c.seek(4.0);
       await c.toggle();
       await tester.pump(const Duration(milliseconds: 100));
       expect(c.silence, isTrue);
       expect(c.mouth, 6);
       await advanceFor(700);
-      expect(c.position, greaterThan(8.6));
+      expect(c.position, greaterThan(4.4));
+      // A quieter phrase near the end explicitly exercises the Small pose.
+      await c.seek(9.72);
+      await advanceFor(50);
+      expect(c.mouth, 1);
+      observed.add(c.mouth);
       if (c.playing) await c.toggle();
-      await c.seek(30);
+      final seekTarget = c.duration * .55;
+      await c.seek(seekTarget);
       await c.toggle();
       await advanceFor(500);
-      expect(c.position, greaterThan(30.2));
+      expect(c.position, greaterThan(seekTarget + .2));
       await c.toggle();
       for (var i = 0; i < 8; i++) {
         if (i == 0 || i == 3) continue;

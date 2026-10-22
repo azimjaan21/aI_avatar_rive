@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "source": "4 Computer - \ucef4\ud4e8\ud130.mp3",
-  "sourceSha256": "808b1481afc105e1b3f651cd79b45e592fa0d82a6045ef014b0e496839785373",
-  "audioSha256": "ad1638c10824e5ccaac4a08b43f34ebaf45818cb5c5f21a343f1595b60ec61b8",
-  "duration": 90.27920833333333,
+  "source": "korean_female_narration.wav",
+  "sourceSha256": "f5197ae7223c755c7afbaeb455ff0cf8c913c71f69303411772fe517fb21ba00",
+  "audioSha256": "f5197ae7223c755c7afbaeb455ff0cf8c913c71f69303411772fe517fb21ba00",
+  "duration": 12.12,
   "fps": 60,
   "mouths": [
     "rest",
@@ -19,19 +19,20 @@
     0,
     3
   ],
+  "silenceMouthIndex": 6,
   "method": {
     "windowMs": 20,
     "attackMs": 30,
     "releaseMs": 70,
-    "silenceThresholdRms": 0.004918873538624818,
+    "silenceThresholdRms": 0.0031622776601683794,
+    "referenceRms": 0.04206589988468586,
     "silenceFrames": 2,
     "minPoseFrames": 4,
     "crossfadeMs": 45,
     "note": "Rest and Wide are disabled. Silence uses Closed press. Medium and high energy use Medium. Energy animation, not phoneme or viseme alignment. Extra art states are manually selectable."
   },
-  "silenceMouthIndex": 6,
-  "frames": 5418,
-  "silenceFrames": 1548,
+  "frames": 729,
+  "silenceFrames": 304,
   "usedMouths": [
     1,
     2,

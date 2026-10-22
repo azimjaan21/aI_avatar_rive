@@ -1,0 +1,73 @@
+{
+  "result": "passed",
+  "audio": "Korean female solo narration, FLEURS ko_kr/test row 4",
+  "audioDurationSeconds": 12.12,
+  "offlineSpeakingWithSmile": true,
+  "localStreamingSpeakerOutput": true,
+  "streamMetrics": {
+    "firstChunkToPlaybackCursorMs": 116.933,
+    "maxQueuedMs": 208.00000000000017,
+    "maxAllowedQueuedMs": 480.0,
+    "analysisFramesRetained": 20,
+    "visemeEventsRetained": 0,
+    "maxAnalysisFrameLagMs": 9.333999999999953,
+    "receivedSeconds": 7.12,
+    "consumedSeconds": 6.933333,
+    "underruns": 0,
+    "clockPollMs": 20,
+    "clock": "SoLoud released-stream consumed sample cursor",
+    "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+  },
+  "speechPoses": [
+    6,
+    2,
+    1
+  ],
+  "silenceSamples": 28,
+  "expressions": [
+    "neutral",
+    "smile",
+    "happy",
+    "encouraging",
+    "softLaugh"
+  ],
+  "conversationStates": [
+    "idle",
+    "listening",
+    "thinking",
+    "speaking",
+    "smiling",
+    "laughing"
+  ],
+  "pauseResumeSeekInterruptEofAndStaleChunk": true,
+  "diagnostics": {
+    "mode": "externalStream",
+    "alignment": "RMS fallback — no phone alignment loaded",
+    "conversation": "idle",
+    "emotion": "neutral",
+    "uiNotifications": 326,
+    "visualSamples": 1755,
+    "stream": {
+      "firstChunkToPlaybackCursorMs": 21.803,
+      "maxQueuedMs": 100.0,
+      "maxAllowedQueuedMs": 480.0,
+      "analysisFramesRetained": 3,
+      "visemeEventsRetained": 0,
+      "maxAnalysisFrameLagMs": 0.0,
+      "receivedSeconds": 0.1,
+      "consumedSeconds": 0.1,
+      "underruns": 0,
+      "clockPollMs": 20,
+      "clock": "SoLoud released-stream consumed sample cursor",
+      "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+    }
+  },
+  "frameTimings": {
+    "mode": "Windows integration debug build; not a mobile or release benchmark",
+    "samples": 727,
+    "buildP50Ms": 1.33,
+    "buildP95Ms": 24.438,
+    "rasterP50Ms": 1.506,
+    "rasterP95Ms": 2.788
+  }
+}

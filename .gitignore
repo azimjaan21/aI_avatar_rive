@@ -31,6 +31,11 @@ venv/
 !/gettopik-teacher/validation/subtle-motion/motion-report.json
 !/gettopik-teacher/validation/subtle-motion/playback-report.json
 !/gettopik-teacher/validation/subtle-motion/audio-output-report.json
+!/gettopik-teacher/validation/adaptive/
+/gettopik-teacher/validation/adaptive/*
+!/gettopik-teacher/validation/adaptive/*-report.json
+!/gettopik-teacher/validation/adaptive/stream-speaker-output.json
+!/gettopik-teacher/validation/adaptive/web-speaker-output.json
 
 # Local settings, credentials and editor files
 .env

@@ -1,0 +1,13 @@
+{
+  "result": "passed",
+  "browser": "Chrome Flutter debug Web",
+  "source": "FLEURS Korean female solo narration",
+  "streamPlaying": true,
+  "speakingWithSmile": true,
+  "pauseClockStable": true,
+  "resume": true,
+  "interruptionIdle": true,
+  "speakerLoopbackOutputDetected": true,
+  "runtimeExceptions": [],
+  "streamUi": "GETTOPIK\nSPEAKING STUDIO\nToggle classroom\nLISTEN & PRACTICE\n한국어로 이야기해요.\nYour Korean speaking teacher\nTODAY’S AUDIO\nkorean_female_narration.wav\n0:04\n0:12\nPause\nRestart\nListening pause\nEye poses\nMouth poses\nPreview each expression, or follow the lesson audio.\nBehavior lab speaking · Local PCM stream\nAudio mode\nRMS fallback — no phone alignment loaded\nExpression\nConversation state\nInterrupt\nStop / reset\nBuffered 144 ms · Start 181 ms\nGETTOPIK / Korean, one conversation at a time."
+}

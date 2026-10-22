@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart' as rive;
 import 'avatar_controller.dart';
+import 'behavior_lab.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -104,7 +105,7 @@ class _TeacherPageState extends State<TeacherPage> {
                           children: [
                             if (classroom)
                               Image.asset(
-                                'assets/classroom_bg.png',
+                                avatar.profile.backgroundAsset,
                                 fit: BoxFit.cover,
                               )
                             else
@@ -359,7 +360,8 @@ class _TeacherPageState extends State<TeacherPage> {
                                   onSelected: (_) => avatar.selectMouth(null),
                                 ),
                                 for (var i = 0; i < avatar.mouths.length; i++)
-                                  if (i != 0 && i != 3)
+                                  if (!avatar.profile.disabledMouthIndices
+                                      .contains(i))
                                     ChoiceChip(
                                       key: Key('mouth-$i'),
                                       label: Text(
@@ -370,6 +372,8 @@ class _TeacherPageState extends State<TeacherPage> {
                                     ),
                               ],
                             ),
+                            const SizedBox(height: 18),
+                            AvatarBehaviorLab(avatar: avatar),
                             if (avatar.error != null)
                               Padding(
                                 padding: const EdgeInsets.only(top: 16),

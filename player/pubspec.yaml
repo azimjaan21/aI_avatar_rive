@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   rive: ^0.14.11
   audioplayers: ^6.8.1
+  flutter_soloud: ^4.1.7
+  crypto: ^3.0.7
 
 dev_dependencies:
   flutter_test:

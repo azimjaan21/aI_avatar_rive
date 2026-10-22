@@ -78,7 +78,7 @@ Copy-Item gettopik-teacher/audio/mouth_timeline.json player/assets/mouth_timelin
 
 MP3 decoding uses the local FFmpeg executable provided by `imageio-ffmpeg`. The analyzer writes a 24 kHz mono WAV for MP3 input, a 60 fps mouth timeline and an analysis report. Paths to the original recording are not required at playback time.
 
-The current recording is 90.279208 seconds. If you replace it, update the integration test's known-silence timestamp and any lesson-specific assertions. Commit both the updated source outputs in `gettopik-teacher/audio/` and the player copies together.
+The current recording is a 12.12-second Korean female solo narration; see [source and attribution](AUDIO_SOURCE.md). If you replace it, update the integration test's known-silence timestamp and any lesson-specific assertions. Commit both the updated source outputs in `gettopik-teacher/audio/` and the player copies together.
 
 ## Animation pipeline
 
@@ -103,7 +103,9 @@ rive gettopik-teacher --verify
 rive inspect gettopik-teacher --summary
 cd player
 flutter analyze
-flutter test integration_test/playback_test.dart -d windows --reporter expanded
+flutter test test/avatar_engine_test.dart
+flutter test integration_test/playback_test.dart -d windows
+flutter test integration_test/adaptive_test.dart -d windows --reporter expanded
 ```
 
 Install the Python helper requirements before the integration test. Run it in an interactive Windows desktop session with speaker output available, and close other copies of the demo so screenshots capture the test window. It plays real audio and measures speaker loopback; it also checks silence, pause, seek, completion, replay, manual poses and independent eye controls.
@@ -120,6 +122,8 @@ Pop-Location
 New-Item -ItemType Directory -Force dist/GETTOPIK-Teacher-Windows | Out-Null
 Copy-Item player/build/windows/x64/runner/Release/* dist/GETTOPIK-Teacher-Windows -Recurse -Force
 Copy-Item README.md dist/GETTOPIK-Teacher-Windows/README-source.md -Force
+Copy-Item docs/AUDIO_SOURCE.md dist/GETTOPIK-Teacher-Windows/AUDIO-SOURCE.md -Force
+Copy-Item gettopik-teacher/audio/audio_source.json dist/GETTOPIK-Teacher-Windows/audio_source.json -Force
 Compress-Archive -Path dist/GETTOPIK-Teacher-Windows -DestinationPath dist/GETTOPIK-Teacher-Windows.zip -Force
 ```
 

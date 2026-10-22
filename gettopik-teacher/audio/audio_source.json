@@ -1,0 +1,18 @@
+{
+  "title": "Korean female solo narration - FLEURS",
+  "dataset": "google/fleurs",
+  "subset": "ko_kr",
+  "split": "test",
+  "row": 4,
+  "recordingId": 1801,
+  "originalFile": "10111865575098096607.wav",
+  "speakerLabel": "female (publisher metadata)",
+  "language": "Korean",
+  "source": "https://huggingface.co/datasets/google/fleurs/viewer/ko_kr/test?row=4",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "FLEURS: Few-shot Learning Evaluation of Universal Representations of Speech, Google, 2022.",
+  "originalSha256": "459b5666b2d4e54055d9d28463522f2f0f8ccb14fea27c0e1d1a5fe450377754",
+  "modification": "Resampled from 16 kHz to 24 kHz mono PCM16. No generated speech or speaker mixing.",
+  "transcript": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대그래프에 비유된다."
+}

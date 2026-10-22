@@ -1,6 +1,6 @@
 # Validation record
 
-The current native Windows demo was tested after replacing Rest with Closed press. The screenshots below are actual application captures from that run.
+The original native Windows validation below was captured after replacing Rest with Closed press. Current adaptive-controller and solo-narration validation is documented in [the implementation report](ADAPTIVE_AVATAR.md). The screenshots below are actual application captures from that run.
 
 The subsequent subtle-motion update preserves the eye, mouth and baked audio timelines. See the [motion validation](MOTION.md#validation) for the seam fallback, measured breathing offsets and its playback regression evidence.
 
@@ -37,7 +37,7 @@ The subsequent subtle-motion update preserves the eye, mouth and baked audio tim
 | --- | --- |
 | ![Actual native playback capture with the Teacher mouth open](images/studio-speaking.png) | ![Actual pause capture using Closed press](images/studio-paused.png) |
 
-The bundled WAV is 90.279208 seconds, mono PCM at 24 kHz. Its SHA-256 is `ad1638c10824e5ccaac4a08b43f34ebaf45818cb5c5f21a343f1595b60ec61b8`.
+The current bundled WAV is a 12.12-second female solo narration, mono PCM16 at 24 kHz. Its SHA-256 is `f5197ae7223c755c7afbaeb455ff0cf8c913c71f69303411772fe517fb21ba00`. Earlier curated reports describe the previous dialogue recording; [source attribution](AUDIO_SOURCE.md) and the adaptive reports describe its replacement.
 
 ## Limits of the result
 
