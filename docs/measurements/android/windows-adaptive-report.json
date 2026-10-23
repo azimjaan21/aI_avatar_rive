@@ -1,0 +1,76 @@
+{
+  "result": "passed",
+  "audio": "Korean female solo narration, FLEURS ko_kr/test row 4",
+  "audioDurationSeconds": 12.12,
+  "offlineSpeakingWithSmile": true,
+  "localStreamingSpeakerOutput": true,
+  "streamMetrics": {
+    "firstChunkToPlaybackCursorMs": 120.789,
+    "maxQueuedMs": 279.99999999999983,
+    "maxAllowedQueuedMs": 480.0,
+    "analysisFramesRetained": 22,
+    "visemeEventsRetained": 0,
+    "maxAnalysisFrameLagMs": 9.334000000000842,
+    "receivedSeconds": 8.68,
+    "consumedSeconds": 8.472,
+    "underruns": 1,
+    "clockPollMs": 20,
+    "clock": "SoLoud released-stream consumed sample cursor",
+    "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+  },
+  "speechPoses": [
+    1,
+    2
+  ],
+  "silenceSamples": 24,
+  "expressions": [
+    "neutral",
+    "smile",
+    "happy",
+    "encouraging",
+    "softLaugh"
+  ],
+  "conversationStates": [
+    "idle",
+    "listening",
+    "thinking",
+    "speaking",
+    "smiling",
+    "laughing"
+  ],
+  "pauseResumeSeekInterruptEofAndStaleChunk": true,
+  "diagnostics": {
+    "riveLoadMs": 190.971,
+    "readyLoadMs": 588.47,
+    "mode": "externalStream",
+    "playbackEngine": "SoLoud PCM16 consumed sample cursor for all sources",
+    "lipSyncStyle": "lightweight",
+    "alignment": "Audio-reactive fallback — no verified timings",
+    "conversation": "idle",
+    "emotion": "neutral",
+    "uiNotifications": 365,
+    "visualSamples": 2033,
+    "stream": {
+      "firstChunkToPlaybackCursorMs": 21.883,
+      "maxQueuedMs": 100.0,
+      "maxAllowedQueuedMs": 480.0,
+      "analysisFramesRetained": 3,
+      "visemeEventsRetained": 0,
+      "maxAnalysisFrameLagMs": 0.0,
+      "receivedSeconds": 0.1,
+      "consumedSeconds": 0.1,
+      "underruns": 0,
+      "clockPollMs": 20,
+      "clock": "SoLoud released-stream consumed sample cursor",
+      "latencyScope": "Playback cursor observation; excludes unmeasured speaker/display hardware latency"
+    }
+  },
+  "frameTimings": {
+    "mode": "Windows integration debug build; not a mobile or release benchmark",
+    "samples": 728,
+    "buildP50Ms": 1.235,
+    "buildP95Ms": 35.9,
+    "rasterP50Ms": 1.503,
+    "rasterP95Ms": 4.238
+  }
+}

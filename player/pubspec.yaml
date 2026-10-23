@@ -1,5 +1,5 @@
 name: gettopik_teacher_player
-description: "Offline GETTOPIK Korean speaking teacher demo with Rive animation and local audio."
+description: "GETTOPIK speaking demo for Android, Windows and Web with local PCM audio and Rive."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rive/rive.dart' as rive;
 import 'avatar_controller.dart';
 import 'behavior_lab.dart';
+import 'demo/demo_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await rive.RiveNative.init();
-  runApp(const TeacherApp());
+  runApp(
+    !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+        ? const GettopikDemoApp()
+        : const TeacherApp(),
+  );
 }
 
 class TeacherApp extends StatelessWidget {

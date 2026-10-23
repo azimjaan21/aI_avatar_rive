@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-23",
+  "flutterAnalyze": "passed, no issues",
+  "flutterTests": {
+    "passed": 13,
+    "navigationWidths": [
+      320,
+      390,
+      800
+    ]
+  },
+  "androidFiveMinuteIntegration": {
+    "passed": true,
+    "test": "player/integration_test/mobile_test.dart",
+    "wallSeconds": 300.022,
+    "buildMode": "debug",
+    "graphics": "headless host NVIDIA GPU",
+    "fullyLiveRendering": true
+  },
+  "androidFullscreenIntegration": {
+    "passed": true,
+    "test": "player/integration_test/fullscreen_test.dart",
+    "durationSeconds": 27,
+    "graphics": "headless SwiftShader with scrcpy window",
+    "sameRiveControllerAcrossViews": true,
+    "audioPositionContinues": true,
+    "playPauseEmotionsBackEnd": true
+  },
+  "finalManualChecks": {
+    "home": true,
+    "allFourCharacterCards": true,
+    "studioPlayback": true,
+    "fullscreenPlayback": true,
+    "portraitRestoredAfterLandscape": true,
+    "visibleMirrorWindow": "GETTOPIK-Android-Demo",
+    "landscapeFullFaceVisible": true
+  },
+  "windowsRegression": "adaptive_test.dart passed, 41 seconds; report included",
+  "riveCliVerify": {
+    "success": true,
+    "errors": 0,
+    "warnings": 0,
+    "compiledAssetChanged": false
+  },
+  "physicalDevicePerformance": "Not measured; profile/release validation still required",
+  "webReleaseBuild": "passed from final source, 167.2 seconds including wasm dry run"
+}

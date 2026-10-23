@@ -1,6 +1,10 @@
-# GETTOPIK Windows Player
+# GETTOPIK Flutter Player
 
 Native Flutter player for the GETTOPIK Teacher Rive avatar and bundled Korean audio.
+
+Android uses a separate mobile demo host with Home, character selection and
+Teacher speaking screens. Run `flutter run -d emulator-5554 -t lib/main_mobile.dart`.
+See [Android setup, reusable module and validation](../docs/ANDROID_DEMO.md).
 
 ![GETTOPIK native Windows player](../docs/images/studio-ready.png)
 

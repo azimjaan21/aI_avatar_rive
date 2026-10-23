@@ -1,6 +1,6 @@
 # GETTOPIK Speaking Studio
 
-An offline Korean speaking teacher demo, built with **Rive CLI**, **RML** and **Flutter for Windows**. A layered Teacher avatar follows a local lesson recording with subtle mouth movement, partial blinking, breathing and head motion.
+An offline Korean speaking teacher demo, built with **Rive CLI**, **RML** and **Flutter for Android, Windows and Web**. A layered Teacher avatar follows a local lesson recording with subtle mouth movement, partial blinking, breathing and head motion.
 
 ![GETTOPIK Speaking Studio showing the Teacher in a classroom with local audio and pose controls](docs/images/studio-ready.png)
 
@@ -31,6 +31,23 @@ The demo runs locally without a backend, API key or paid avatar service. Rive ar
 These screenshots are from the native Windows application. Playback, silence, pause, seeking and replay were exercised in the [native integration test](player/integration_test/playback_test.dart); see the [validation record](docs/VALIDATION.md).
 
 ## Quick start
+
+### Android demo
+
+The mobile demo includes Home, character selection and a reusable Teacher
+speaking screen. From `player/`, with an emulator running:
+
+```powershell
+flutter run -d emulator-5554 -t lib/main_mobile.dart
+```
+
+See the [Android setup, module migration and emulator validation guide](docs/ANDROID_DEMO.md).
+
+The Teacher also has an optional full-screen view with video-call-style controls.
+
+| Android Home | Characters | Full-screen Teacher |
+| --- | --- | --- |
+| ![Android Home](docs/images/android/home.png) | ![Character selection](docs/images/android/characters.png) | ![Full-screen Teacher](docs/images/android/teacher-fullscreen-speaking.png) |
 
 ### Run from source
 

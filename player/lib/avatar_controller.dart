@@ -55,6 +55,9 @@ class AvatarController extends ChangeNotifier {
   late int eyePose = profile.autoEye;
   final _clock = Stopwatch()..start();
   final _arrivalClock = Stopwatch();
+  final _playRequestClock = Stopwatch();
+  double? playRequestToCursorMs;
+  bool _awaitingFirstCursor = false;
   int _arrivalDueMs = 0;
   Timer? _behaviorTimer, _feedTimer;
   PcmWav? _wav;
@@ -73,6 +76,9 @@ class AvatarController extends ChangeNotifier {
   late int mouth = profile.neutral;
   bool playing = false, ready = false, seeking = false, silence = true;
   bool _disposed = false, _forceNeutral = true;
+  bool _presentationSuspended = false;
+  int presentationSuspensions = 0;
+  double? riveLoadMs, readyLoadMs;
   int? manualMouth;
   String? error;
   AvatarAudioMode mode = AvatarAudioMode.offline;
@@ -84,6 +90,7 @@ class AvatarController extends ChangeNotifier {
   bool get transportActive => stream.active && !stream.paused;
 
   Future<void> load() async {
+    final loadClock = Stopwatch()..start();
     try {
       final data = jsonDecode(await rootBundle.loadString(timelineAsset));
       frames = data['frames'];
@@ -91,7 +98,9 @@ class AvatarController extends ChangeNotifier {
       duration = (data['duration'] as num).toDouble();
       _lessonDuration = duration;
       source = data['source'];
+      final riveClock = Stopwatch()..start();
       file = await rive.File.asset(rivAsset, riveFactory: rive.Factory.rive);
+      riveLoadMs = riveClock.elapsedMicroseconds / 1000;
       if (_disposed) {
         file?.dispose();
         return;
@@ -155,10 +164,8 @@ class AvatarController extends ChangeNotifier {
       }
       if (_disposed) return;
       ready = true;
-      _behaviorTimer = Timer.periodic(
-        const Duration(milliseconds: 33),
-        (_) => _applyVisuals(),
-      );
+      readyLoadMs = loadClock.elapsedMicroseconds / 1000;
+      if (!_presentationSuspended) resumePresentation();
       _applyVisuals();
       _publish(force: true);
     } catch (e) {
@@ -167,9 +174,14 @@ class AvatarController extends ChangeNotifier {
   }
 
   void _streamTick() {
-    if (_disposed) return;
+    if (_disposed || _presentationSuspended) return;
     position = _streamOffset + stream.consumed;
     playing = stream.audible;
+    if (_awaitingFirstCursor && playing && stream.consumed > 0) {
+      playRequestToCursorMs = _playRequestClock.elapsedMicroseconds / 1000;
+      _awaitingFirstCursor = false;
+      _playRequestClock.stop();
+    }
     _frame = stream.frameAt(stream.consumed);
     if (mode == AvatarAudioMode.externalStream) duration = stream.received;
     _applyVisuals();
@@ -271,7 +283,7 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<void> toggle() async {
-    if (!ready) return;
+    if (!ready || _presentationSuspended) return;
     try {
       manualMouth = null;
       if (!stream.active) {
@@ -299,7 +311,31 @@ class AvatarController extends ChangeNotifier {
     _publish(force: true);
   }
 
+  /// Mobile hosts suspend idle work as well as playback when backgrounded.
+  void suspendPresentation() {
+    if (_disposed) return;
+    if (!_presentationSuspended) presentationSuspensions++;
+    _presentationSuspended = true;
+    _behaviorTimer?.cancel();
+    _feedTimer?.cancel();
+    unawaited(pause());
+  }
+
+  /// Resume visuals only. Audio requires an explicit Play gesture.
+  void resumePresentation() {
+    if (_disposed) return;
+    _presentationSuspended = false;
+    _behaviorTimer?.cancel();
+    if (ready) {
+      _behaviorTimer = Timer.periodic(
+        const Duration(milliseconds: 33),
+        (_) => _applyVisuals(),
+      );
+    }
+  }
+
   void resume() {
+    if (_disposed || _presentationSuspended) return;
     if (!stream.active) {
       unawaited(toggle());
       return;
@@ -308,6 +344,10 @@ class AvatarController extends ChangeNotifier {
     behavior.onSpeaking();
     _arrivalClock.start();
     stream.resume();
+    if (mode != AvatarAudioMode.externalStream && !stream.inputEnded) {
+      _feedTimer?.cancel();
+      _feedLocal(_turn);
+    }
     _streamTick();
     _publish(force: true);
   }
@@ -362,6 +402,11 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<void> _startLocal(double from) async {
+    _playRequestClock
+      ..reset()
+      ..start();
+    _awaitingFirstCursor = true;
+    playRequestToCursorMs = null;
     final turn = ++_turn;
     _feedTimer?.cancel();
     if (_wav == null) {
@@ -393,11 +438,17 @@ class AvatarController extends ChangeNotifier {
     manualMouth = null;
     lips.reset();
     behavior.onSpeaking();
+    // A native backend may finish initialization after Android backgrounds us.
+    if (_presentationSuspended) {
+      await pause();
+      return;
+    }
     _feedLocal(turn);
   }
 
   void _feedLocal(int turn) {
     if (_disposed ||
+        _presentationSuspended ||
         turn != _turn ||
         mode == AvatarAudioMode.externalStream ||
         !stream.active) {
@@ -448,6 +499,7 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<int> startPcmStream({int sampleRate = 24000}) async {
+    _awaitingFirstCursor = false;
     await stop();
     final turn = ++_turn;
     mode = AvatarAudioMode.externalStream;
@@ -485,6 +537,7 @@ class AvatarController extends ChangeNotifier {
   }
 
   Future<void> stop() async {
+    _awaitingFirstCursor = false;
     ++_turn;
     _arrivalClock.stop();
     _feedTimer?.cancel();
@@ -542,8 +595,8 @@ class AvatarController extends ChangeNotifier {
     _publish(force: true);
   }
 
-  void configureViewport(double width, double height) {
-    final scale = math.min(
+  void configureViewport(double width, double height, {bool cover = false}) {
+    final scale = (cover ? math.max : math.min)(
       width / profile.canvasWidth,
       height / profile.canvasHeight,
     );
@@ -579,6 +632,10 @@ class AvatarController extends ChangeNotifier {
   }
 
   Map<String, dynamic> get diagnostics => {
+    'riveLoadMs': riveLoadMs,
+    'readyLoadMs': readyLoadMs,
+    'presentationSuspensions': presentationSuspensions,
+    'localPlayRequestToCursorMs': playRequestToCursorMs,
     'mode': mode.name,
     'playbackEngine': 'SoLoud PCM16 consumed sample cursor for all sources',
     'lipSyncStyle': lips.style.name,

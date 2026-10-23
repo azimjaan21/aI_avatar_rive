@@ -1,0 +1,94 @@
+{
+  "scope": "Android emulator debug integration test with fully live rendering; not production performance",
+  "specs": {
+    "serial": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "android": "15",
+    "api": "35",
+    "abi": "x86_64",
+    "kernel": "Linux localhost 6.6.50-android15-8-g8adecb593e9b-ab12525588 #1 SMP PREEMPT Fri Oct 18 23:59:20 UTC 2024 x86_64 Toybox",
+    "display": "Physical size: 1080x2400",
+    "density": "Physical density: 420",
+    "memory": "MemTotal:        4013940 kB\r\nMemFree:          381840 kB\r\nMemAvailable:    2119680 kB",
+    "cores": "4",
+    "buildMode": "debug",
+    "scope": "Preliminary emulator diagnostics, not production benchmarks"
+  },
+  "wallSessionSeconds": 300.022,
+  "androidPssMiB": {
+    "first": 299.806640625,
+    "last": 311.2978515625,
+    "netGrowth": 11.4912109375,
+    "distribution": {
+      "min": 297.435546875,
+      "median": 315.9775390625,
+      "max": 323.001953125
+    },
+    "samples": 31,
+    "sampleSpanSeconds": 299.875
+  },
+  "cpuPercentOneLogicalCore": {
+    "weightedMean": 51.3228772922051,
+    "distribution": {
+      "min": 46.927,
+      "median": 50.811,
+      "max": 68.0
+    }
+  },
+  "lastFrameWindow": {
+    "buildP50ms": 3.048,
+    "buildP95ms": 10.385,
+    "rasterP50ms": 4.638,
+    "rasterP95ms": 16.861
+  },
+  "frameWindowScope": "Most recent 600 Flutter FrameTiming samples; separate build and raster stages",
+  "sessionControllerFrames": 17175,
+  "sessionControllerFramesOver16_67ms": 975,
+  "sessionControllerOverBudgetPercent": 5.676855895196507,
+  "frameCounterScope": "Last screen lifetime, including a short warm-up before the five-minute session; ends at final periodic sample",
+  "firstTeacherRiveDecodeMs": 394.647,
+  "firstTeacherReadyMs": 754.425,
+  "reopenReadyMs": {
+    "min": 247.111,
+    "median": 263.242,
+    "max": 392.236
+  },
+  "firstChunkToPlaybackCursorMs": {
+    "min": 22.071,
+    "median": 32.191,
+    "max": 163.36
+  },
+  "localPlayRequestToPlaybackCursorMs": {
+    "min": 22.134,
+    "median": 32.27,
+    "max": 163.466
+  },
+  "localFileRequestToCursorMs": {
+    "min": 22.134,
+    "median": 25.711,
+    "max": 32.27
+  },
+  "simulatedStreamRequestToCursorMs": {
+    "min": 140.863,
+    "median": 142.23149999999998,
+    "max": 163.466
+  },
+  "maxAnalysisFrameLagMs": 9.334000000000842,
+  "underruns": 0,
+  "maxQueueMs": 480.00000000000045,
+  "playbackTurnsStarted": 25,
+  "completedTurns": 24,
+  "mouthsObserved": [
+    6,
+    1,
+    2
+  ],
+  "audioTimingScope": "Consumed PCM sample cursor and selected analysis frame; excludes hardware speaker/display latency and phoneme accuracy",
+  "hostSpeakerLoopback": {
+    "seconds": 14.0,
+    "peakRms": 0.0008082188369064336,
+    "audibleBlocks": 91,
+    "outputDetected": true,
+    "method": "WASAPI speaker loopback, stereo, 24 kHz; RMS per 100 ms"
+  }
+}

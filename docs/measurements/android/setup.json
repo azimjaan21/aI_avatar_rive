@@ -1,0 +1,43 @@
+{
+  "initialColdLaunch": {
+    "launchState": "COLD",
+    "androidTotalTimeMs": 4673,
+    "adbWaitTimeMs": 4677,
+    "scope": "First installed debug app launch to first Flutter frame, emulator; includes cold caches"
+  },
+  "initialDebugApkBytes": 109125140,
+  "initialGradleSeconds": 871.7,
+  "host": {
+    "cpu": "Intel Core i9-9900K",
+    "logicalCores": 16,
+    "ramBytes": 34272899072,
+    "gpu": "NVIDIA TITAN RTX",
+    "gpuDriver": "610.88",
+    "os": "Windows 11 25H2 26200.9711"
+  },
+  "emulator": {
+    "version": "37.2.12.0",
+    "avd": "GETTOPIK_Pixel",
+    "gpuMode": "host",
+    "acceleration": "WHPX installed and usable",
+    "memoryMiB": 4096,
+    "cores": 4,
+    "image": "system-images;android-35;google_apis;x86_64",
+    "resolution": "1080x2400",
+    "densityDpi": 420
+  },
+  "toolchain": {
+    "flutter": "3.44.6",
+    "dart": "3.12.2",
+    "java": "Oracle JDK 23",
+    "compileSdk": 36,
+    "ndk": "28.2.13676358",
+    "cmake": "3.22.1",
+    "gradle": "9.1.0",
+    "agp": "9.0.1"
+  },
+  "unchangedRive": true,
+  "portraitIsOriginalCopy": true,
+  "validatedRunMode": "headless Android Emulator with host NVIDIA graphics and WHPX; fully live Flutter rendering",
+  "emulatorWindowLimitation": "Windowed host GPU run encountered DisplaySurfaceGlContextHelper context was preempted by others. Repeated validation uses -no-window to bypass that emulator display-window path."
+}

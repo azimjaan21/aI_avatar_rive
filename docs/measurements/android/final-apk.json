@@ -1,0 +1,32 @@
+{
+  "buildMode": "debug",
+  "probeEnabled": false,
+  "apkBytes": 127478158,
+  "apkSha256": "18cb2d8f19e183efe4ca30a77c2d4513f08bafbaa1bb06e46eb5b988c2a18651",
+  "runtimeAbi": "x86_64",
+  "startupGraphics": "SwiftShader, Vulkan disabled, scrcpy mirror active; differs from measured five-minute host-GPU run",
+  "processColdCacheWarmStartupTrials": [
+    {
+      "raw": "Starting: Intent { cmp=app.gettopik.gettopik_teacher_player/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: app.gettopik.gettopik_teacher_player/.MainActivity\r\nTotalTime: 4176\r\nWaitTime: 4187\r\nComplete\r\n",
+      "totalTimeMs": 4176
+    },
+    {
+      "raw": "Starting: Intent { cmp=app.gettopik.gettopik_teacher_player/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: app.gettopik.gettopik_teacher_player/.MainActivity\r\nTotalTime: 4180\r\nWaitTime: 4182\r\nComplete\r\n",
+      "totalTimeMs": 4180
+    },
+    {
+      "raw": "Starting: Intent { cmp=app.gettopik.gettopik_teacher_player/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: app.gettopik.gettopik_teacher_player/.MainActivity\r\nTotalTime: 4184\r\nWaitTime: 4202\r\nComplete\r\n",
+      "totalTimeMs": 4184
+    }
+  ],
+  "artifact": "dist\\GETTOPIK-Android\\gettopik-demo-debug-x86_64.apk",
+  "screenshots": [
+    "characters",
+    "home",
+    "teacher-fullscreen-speaking",
+    "teacher-fullscreen",
+    "teacher-landscape",
+    "teacher-speaking",
+    "teacher"
+  ]
+}
