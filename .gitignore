@@ -68,3 +68,7 @@ Desktop.ini
 
 # pubspec.lock, source PNGs, WAV, timeline JSON, player/assets/teacher.riv
 # and docs/images are intentionally included for a runnable checkout.
+
+# Downloaded podcast excerpt: local evaluation only, no redistribution grant.
+/player/assets/local_julia.wav
+/player/assets/local_julia_timeline.json

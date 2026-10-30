@@ -18,20 +18,25 @@ enum AvatarAudioMode { offline, localStream, externalStream }
 
 enum PcmEnqueueResult { accepted, backpressure, staleTurn }
 
+// The podcast fixture is local-only; the licensed FLEURS sample stays default.
+const _localJuliaAudio = bool.fromEnvironment('LOCAL_JULIA_AUDIO');
+
 /// Coordinates playback-clock lip sync, independent expressions and Rive.
 /// No service connection is required. PCM turn IDs reject late interrupted data.
 class AvatarController extends ChangeNotifier {
   AvatarController({
     this.profile = CharacterProfile.teacher,
     String? rivAsset,
-    this.audioAsset = 'korean_demo.wav',
-    this.timelineAsset = 'assets/mouth_timeline.json',
-    this.visemeAsset = 'assets/korean_visemes.json',
+    this.audioAsset = _localJuliaAudio ? 'local_julia.wav' : 'korean_demo.wav',
+    this.timelineAsset = _localJuliaAudio
+        ? 'assets/local_julia_timeline.json'
+        : 'assets/mouth_timeline.json',
+    this.visemeAsset = _localJuliaAudio ? null : 'assets/korean_visemes.json',
     String? artboardName,
     String? propertyName,
-  }) : rivAsset = rivAsset ?? profile.rivAsset,
-       artboardName = artboardName ?? profile.artboard,
-       propertyName = propertyName ?? profile.mouthProperty;
+  })  : rivAsset = rivAsset ?? profile.rivAsset,
+        artboardName = artboardName ?? profile.artboard,
+        propertyName = propertyName ?? profile.mouthProperty;
   final CharacterProfile profile;
   final String rivAsset, audioAsset, timelineAsset, artboardName, propertyName;
   final String? visemeAsset;
@@ -99,7 +104,12 @@ class AvatarController extends ChangeNotifier {
       _lessonDuration = duration;
       source = data['source'];
       final riveClock = Stopwatch()..start();
-      file = await rive.File.asset(rivAsset, riveFactory: rive.Factory.rive);
+      // Use Flutter's canvas renderer on iOS. The native texture path can
+      // produce a transparent surface on the Intel iOS simulator.
+      final factory = !kIsWeb && defaultTargetPlatform == TargetPlatform.iOS
+          ? rive.Factory.flutter
+          : rive.Factory.rive;
+      file = await rive.File.asset(rivAsset, riveFactory: factory);
       riveLoadMs = riveClock.elapsedMicroseconds / 1000;
       if (_disposed) {
         file?.dispose();
@@ -138,9 +148,8 @@ class AvatarController extends ChangeNotifier {
       final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
       if (visemeAsset != null && manifest.listAssets().contains(visemeAsset)) {
         try {
-          final json =
-              jsonDecode(await rootBundle.loadString(visemeAsset!))
-                  as Map<String, dynamic>;
+          final json = jsonDecode(await rootBundle.loadString(visemeAsset!))
+              as Map<String, dynamic>;
           final wav = await rootBundle.load('assets/$audioAsset');
           final hash = sha256
               .convert(
@@ -198,8 +207,7 @@ class AvatarController extends ChangeNotifier {
       _lastSpeechPosition = position;
     }
     final lastSpeech = _lastSpeechPosition;
-    final talking =
-        playing &&
+    final talking = playing &&
         manualMouth == null &&
         lastSpeech != null &&
         position >= lastSpeech &&
@@ -211,8 +219,7 @@ class AvatarController extends ChangeNotifier {
     final event = external
         ? stream.visemeAt(stream.consumed)
         : lips.alignment?.at(position);
-    var next =
-        manualMouth ??
+    var next = manualMouth ??
         lips.resolve(
           position,
           _frame,
@@ -225,8 +232,7 @@ class AvatarController extends ChangeNotifier {
         profile.supportsSmile &&
         expression.weight > .45) {
       if (!transportActive) {
-        next =
-            expression.emotion == AvatarEmotion.softLaugh &&
+        next = expression.emotion == AvatarEmotion.softLaugh &&
                 expression.laughOpen
             ? profile.small
             : profile.smile;
@@ -460,13 +466,11 @@ class AvatarController extends ChangeNotifier {
       // Schedule against absolute arrival deadlines: UI/capture delays must not
       // accumulate into a producer rate slower than the audio sample clock.
       if (!stream.paused) {
-        for (
-          var count = 0;
-          count < 12 &&
-              (mode == AvatarAudioMode.offline ||
-                  _arrivalDueMs <= _arrivalClock.elapsedMilliseconds);
-          count++
-        ) {
+        for (var count = 0;
+            count < 12 &&
+                (mode == AvatarAudioMode.offline ||
+                    _arrivalDueMs <= _arrivalClock.elapsedMilliseconds);
+            count++) {
           final wav = _wav!;
           if (_feedOffset >= wav.pcm.length) {
             stream.finish();
@@ -487,10 +491,11 @@ class AvatarController extends ChangeNotifier {
       final delay = mode == AvatarAudioMode.offline
           ? 20
           : stream.paused
-          ? 40
-          : backpressure
-          ? 20
-          : math.max(1, _arrivalDueMs - _arrivalClock.elapsedMilliseconds);
+              ? 40
+              : backpressure
+                  ? 20
+                  : math.max(
+                      1, _arrivalDueMs - _arrivalClock.elapsedMilliseconds);
       _feedTimer = Timer(Duration(milliseconds: delay), () => _feedLocal(turn));
     } catch (e) {
       _failure(e);
@@ -604,9 +609,9 @@ class AvatarController extends ChangeNotifier {
     _displayScale = scale;
     _breathAmplitude =
         (profile.breathingPixels / (profile.authoredBreathUnits * scale)).clamp(
-          .001,
-          1.0,
-        );
+      .001,
+      1.0,
+    );
     _setNumber(breathProperty, _breathAmplitude);
   }
 
@@ -632,20 +637,20 @@ class AvatarController extends ChangeNotifier {
   }
 
   Map<String, dynamic> get diagnostics => {
-    'riveLoadMs': riveLoadMs,
-    'readyLoadMs': readyLoadMs,
-    'presentationSuspensions': presentationSuspensions,
-    'localPlayRequestToCursorMs': playRequestToCursorMs,
-    'mode': mode.name,
-    'playbackEngine': 'SoLoud PCM16 consumed sample cursor for all sources',
-    'lipSyncStyle': lips.style.name,
-    'alignment': alignmentStatus,
-    'conversation': conversation.name,
-    'emotion': emotion.name,
-    'uiNotifications': uiNotifications,
-    'visualSamples': visualSamples,
-    'stream': stream.metrics,
-  };
+        'riveLoadMs': riveLoadMs,
+        'readyLoadMs': readyLoadMs,
+        'presentationSuspensions': presentationSuspensions,
+        'localPlayRequestToCursorMs': playRequestToCursorMs,
+        'mode': mode.name,
+        'playbackEngine': 'SoLoud PCM16 consumed sample cursor for all sources',
+        'lipSyncStyle': lips.style.name,
+        'alignment': alignmentStatus,
+        'conversation': conversation.name,
+        'emotion': emotion.name,
+        'uiNotifications': uiNotifications,
+        'visualSamples': visualSamples,
+        'stream': stream.metrics,
+      };
   @override
   void dispose() {
     _disposed = true;
